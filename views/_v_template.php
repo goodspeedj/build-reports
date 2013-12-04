@@ -15,7 +15,7 @@
   
 </head>
 
-<body class="background-img">  
+<body>  
   <div id="wrap">
 
     <!-- 
@@ -49,7 +49,7 @@
       </span>
       <span class="footer-text">CSCI E-15 Project &#35;4</span>
       <span class="footer-text">
-        <a href="https://github.com/goodspeedj/p2.go.odspeed.com">GitHub Repo</a>
+        <a href="https://github.com/goodspeedj/p4.go.odspeed.com">GitHub Repo</a>
       </span>
     </div>
   </div>
