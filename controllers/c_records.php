@@ -9,6 +9,10 @@ class records_controller extends base_controller {
         }
     } 
 
+
+    /**
+     * Pull back the build records from the database
+     */
     public function index() {
 
     	// Setup the view
@@ -16,13 +20,13 @@ class records_controller extends base_controller {
         $this->template->title   = "Build Records";
 
         // Get the build records
-        $sql = "SELECT components.name, products.name, versions.version, versions.status
-        		FROM versions
+        $sql = "SELECT components.name, products.name, builds.version, builds.status
+        		FROM builds
         		INNER JOIN components
-        			ON versions.component_id = components.component_id
+        			ON builds.component_id = components.component_id
         		INNER JOIN products
         			ON components.product_id = products.product_id
-        		ORDER BY versions.created";
+        		ORDER BY builds.created";
 
         $records = DB::instance(DB_NAME)->select_rows($sql);
 
@@ -30,5 +34,25 @@ class records_controller extends base_controller {
 
         // Display the view
         echo $this->template;
+    }
+
+
+    /**
+     * Add new build records to the database
+     */
+    public function add() {
+    	$_POST['created']  = Time::now();
+
+    	DB::instance(DB_NAME)->insert('records', $_POST);
+
+    	Router::redirect('/records/index');
+    }
+
+
+    /**
+     * Filter the records on the page
+     */
+    public function filter() {
+
     }
 }
