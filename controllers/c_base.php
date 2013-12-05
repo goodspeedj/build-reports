@@ -23,7 +23,7 @@ class base_controller {
             $this->email_template = View::instance('_v_email');   
 
         # Setup template for the navigation bar
-            //$this->template->hide_navbar = FALSE;
+            $this->template->hide_navbar = FALSE;
             $this->template->navbar = View::instance('_v_navbar');      
                                 
         # So we can use $user in views          
