@@ -74,5 +74,6 @@
   <script src="/js/bootstrap-filestyle.min.js"></script>
   <script src="/js/jquery.validate.min.js"></script>
   <script src="/js/jquery.dataTables.min.js"></script>
+  <script src="/js/p4-records.js"></script>
 </body>
 </html>
