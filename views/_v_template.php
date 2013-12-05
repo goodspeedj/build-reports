@@ -36,11 +36,17 @@
         </div>
         <div class="span3"></div>
       </div>
+
+      <div id="footer">
+        <div class="container">
+          <p> test footer</p>
+        </div>
+      </div>
     </div>
 
   </div>
 
-  <!-- Display the footer -->
+  <!-- Display the footer 
   <div class="container">
     <div id="footer" class="navbar navbar-fixed-bottom">
       <span class="footer-text">Jim Goodspeed</span>
@@ -53,6 +59,7 @@
       </span>
     </div>
   </div>
+  -->
   
   <script src="/js/jquery-2.0.3.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>

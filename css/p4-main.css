@@ -4,3 +4,8 @@ body {
   font-family: Calibri, Arial, "Helvetica Nue", sans-serif;
   font-size: 16px;
 }
+
+#footer {
+	height: 60px;
+	background-color: #F5F5F5;
+}
