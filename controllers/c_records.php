@@ -23,7 +23,8 @@ class records_controller extends base_controller {
         $sql = "SELECT components.name AS comp_name, 
                        products.name AS prod_name, 
                        builds.build_num, 
-                       builds.status, 
+                       builds.status,
+                       builds.created, 
                        builds.duration,
                        builds.job_name
         		FROM builds
