@@ -1,3 +1,5 @@
 $(document).ready(function() {
-	$('#records').dataTable();
-});
+    $('#records').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+} );
