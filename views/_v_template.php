@@ -57,6 +57,6 @@
   <script src="/js/jquery-2.0.3.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/bootstrap-filestyle.min.js"></script>
-  <script src="/js/jquery.validate.js"></script>
+  <script src="/js/jquery.validate.min.js"></script>
 </body>
 </html>
