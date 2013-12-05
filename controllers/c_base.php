@@ -24,7 +24,7 @@ class base_controller {
 
         # Setup template for the navigation bar
             //$this->template->hide_navbar = FALSE;
-            //$this->template->navbar = View::instance('_v_navbar');      
+            $this->template->navbar = View::instance('_v_navbar');      
                                 
         # So we can use $user in views          
             $this->template->set_global('user', $this->user);
