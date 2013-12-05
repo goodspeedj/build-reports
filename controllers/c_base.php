@@ -20,7 +20,7 @@ class base_controller {
                         
         # Set up templates
             $this->template       = View::instance('_v_template');
-            //$this->email_template = View::instance('_v_email');   
+            $this->email_template = View::instance('_v_email');   
 
         # Setup template for the navigation bar
             //$this->template->hide_navbar = FALSE;

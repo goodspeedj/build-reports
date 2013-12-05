@@ -4,9 +4,9 @@ class records_controller extends base_controller {
     public function __construct() {
         parent::__construct();
 
-        if(!$this->user) {
-            Router::redirect('/users/login');
-        }
+        //if(!$this->user) {
+        //    Router::redirect('/records/index');
+        //}
     } 
 
 
@@ -20,7 +20,12 @@ class records_controller extends base_controller {
         $this->template->title   = "Build Records";
 
         // Get the build records
-        $sql = "SELECT components.name, products.name, builds.version, builds.status
+        $sql = "SELECT components.name AS comp_name, 
+                       products.name AS prod_name, 
+                       builds.build_num, 
+                       builds.status, 
+                       builds.duration,
+                       builds.job_name
         		FROM builds
         		INNER JOIN components
         			ON builds.component_id = components.component_id
