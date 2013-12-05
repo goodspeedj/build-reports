@@ -21,7 +21,7 @@
       <td><?= $row['job_name']; ?></td>
       <td><?= $row['status']; ?></td>
       <td><?= $row['duration']; ?></td>
-      <td><?= $row['created']; ?></td>
+      <td><?= date("Y-m-d H:i:s", $row['created']); ?></td>
     </tr>
   <?php endforeach; ?>
   
