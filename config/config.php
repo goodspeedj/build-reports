@@ -31,7 +31,7 @@ A email designated to receive messages from the server. Examples:
 	define('SYSTEM_EMAIL', 'goodspeedj@comcast.net'); 
 
 # Default DB name for this app
-	define('DB_NAME', "odspeedc_p4_go_odpeed_com"); 
+	define('DB_NAME', "odspeedc_p4_go_odspeed_com"); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
