@@ -36,14 +36,22 @@
         </div>
         <div class="span3"></div>
       </div>
-
-      <div id="footer">
-        <div class="container">
-          <p> test footer</p>
-        </div>
-      </div>
     </div>
 
+  </div>
+
+  <!-- Display the footer -->
+  <div id="footer">
+    <div class="container">
+      <span class="footer-text">Jim Goodspeed</span>
+      <span class="footer-text">
+        <a href="mailto:jgoodsp@fas.harvard.edu">jgoodsp@fas.harvard.edu</a>
+      </span>
+      <span class="footer-text">CSCI E-15 Project &#35;4</span>
+      <span class="footer-text">
+        <a href="https://github.com/goodspeedj/p4.go.odspeed.com">GitHub Repo</a>
+      </span>
+    </div>
   </div>
 
   <!-- Display the footer 
