@@ -55,6 +55,19 @@ div.dataTables_paginate {
   float: right;
   margin: 0;
 }
+
+ul.pagination {
+  font-size: 13px;
+}
+
+.pagination>.active>a {
+  background-color: #556394;
+  border-color: #556394;
+}
+
+.pagination>li>a {
+  color: #556394;
+}
  
 table {
   margin: 1em 0;
