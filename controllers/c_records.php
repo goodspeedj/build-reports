@@ -51,18 +51,32 @@ class records_controller extends base_controller {
      * Add new build records to the database
      */
     public function add() {
-    	$_POST['created']  = Time::now();
 
-    	DB::instance(DB_NAME)->insert('records', $_POST);
+        $this->template->content = View::instance('v_records_add');
+        $this->template->title   = "Add new record";
+
+        $sql = "SELECT name FROM products";
+        $products = DB::instance(DB_NAME)->select_rows($sql);
+
+
+        $sql = "SELECT name FROM components";
+        $components = DB::instance(DB_NAME)->select_rows($sql);
+
+        $this->template->content->products = $products;
+        $this->template->content->components = $components;
 
     	Router::redirect('/records/index');
     }
 
 
     /**
-     * Filter the records on the page
+     * Process the add record form
      */
-    public function filter() {
+    public function p_add() {
+
+        $_POST['created']  = Time::now();
+
+        DB::instance(DB_NAME)->insert('records', $_POST);
 
     }
 }
