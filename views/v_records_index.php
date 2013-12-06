@@ -1,4 +1,4 @@
-<table id="records">
+<table id="records" class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>Product</th>
