@@ -64,6 +64,10 @@ class records_controller extends base_controller {
 
         $this->template->content->products = $products;
         $this->template->content->components = $components;
+
+        // Display the view
+        echo $this->template;
+
     }
 
 
