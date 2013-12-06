@@ -15,13 +15,13 @@
   <!-- loop through the records -->
   <?php foreach ($records as $row): ?>
     <tr>
-      <td><?= $row['prod_name']; ?></td>
-      <td><?= $row['comp_name']; ?></td>
-      <td><?= $row['build_num']; ?></td>
-      <td><?= $row['job_name']; ?></td>
-      <td><?= $row['status']; ?></td>
-      <td><?= $row['duration']; ?></td>
-      <td><?= date("Y-m-d H:i:s", $row['created']); ?></td>
+      <td><?= clean($row['prod_name']); ?></td>
+      <td><?= clean($row['comp_name']); ?></td>
+      <td><?= clean($row['build_num']); ?></td>
+      <td><?= clean($row['job_name']); ?></td>
+      <td><?= clean($row['status']); ?></td>
+      <td><?= clean($row['duration']); ?></td>
+      <td><?= clean(date("Y-m-d H:i:s", $row['created'])); ?></td>
     </tr>
   <?php endforeach; ?>
   

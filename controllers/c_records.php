@@ -15,6 +15,10 @@ class records_controller extends base_controller {
      */
     public function index() {
 
+        function clean ($string) {
+            return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+        }
+
     	// Setup the view
         $this->template->content = View::instance('v_records_index');
         $this->template->title   = "Build Records";
