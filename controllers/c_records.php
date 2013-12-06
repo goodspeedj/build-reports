@@ -19,7 +19,7 @@ class records_controller extends base_controller {
             return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
         }
 
-    	// Setup the view
+        // Setup the view
         $this->template->content = View::instance('v_records_index');
         $this->template->title   = "Build Records";
 
@@ -31,12 +31,12 @@ class records_controller extends base_controller {
                        builds.created, 
                        builds.duration,
                        builds.job_name
-        		FROM builds
-        		INNER JOIN components
-        			ON builds.component_id = components.component_id
-        		INNER JOIN products
-        			ON components.product_id = products.product_id
-        		ORDER BY builds.created";
+                FROM builds
+                INNER JOIN components
+                    ON builds.component_id = components.component_id
+                INNER JOIN products
+                    ON components.product_id = products.product_id
+                ORDER BY builds.created";
 
         $records = DB::instance(DB_NAME)->select_rows($sql);
 
@@ -64,8 +64,6 @@ class records_controller extends base_controller {
 
         $this->template->content->products = $products;
         $this->template->content->components = $components;
-
-    	Router::redirect('/records/index');
     }
 
 
