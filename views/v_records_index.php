@@ -1,3 +1,4 @@
+<h4>Build Records</h4>
 <table id="records" class="table table-striped table-bordered">
   <thead>
     <tr>
