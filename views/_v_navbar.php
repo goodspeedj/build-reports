@@ -11,21 +11,35 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/records/index">Records</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
+
+      <!-- 
+          Determine which navbar button is highlighted 
+      -->
+      <?php if (($_SERVER['REQUEST_URI'] == "/index/index") || ($_SERVER['REQUEST_URI'] == "/index") || ($_SERVER['REQUEST_URI'] == "/")): ?>
+        <li class="active">
+      <?php else: ?>
+        <li>
+      <?php endif; ?>
+          <a href="/">Home</a>
+        </li>
+
+      <?php if($_SERVER['REQUEST_URI'] == "/records/index"): ?>
+        <li class="active">
+      <?php else: ?>
+        <li>
+      <?php endif; ?>
+          <a href="/records/index">Records</a>
+        </li>
+
+      <?php if($_SERVER['REQUEST_URI'] == "/reports/index"): ?>
+        <li class="active">
+      <?php else: ?>
+        <li>
+      <?php endif; ?>
+          <a href="/reports/index">Reports</a>
         </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
