@@ -5,7 +5,7 @@ class records_controller extends base_controller {
         parent::__construct();
 
         if(!$this->user) {
-            Router::redirect('/records/index');
+            Router::redirect('/users/login');
         }
     } 
 
