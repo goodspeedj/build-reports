@@ -76,9 +76,20 @@ class records_controller extends base_controller {
      */
     public function p_add() {
 
+        // Get current time
         $_POST['created']  = Time::now();
 
-        DB::instance(DB_NAME)->insert('records', $_POST);
+        $sql = "SELECT component_id
+                FROM components
+                WHERE '" . $_POST['component_id'] . "' = name";
+
+        $comp_id = DB::instance(DB_NAME)->select_field($sql);
+
+        $_POST['component_id'] = $comp_id;
+
+        DB::instance(DB_NAME)->insert('builds', $_POST);
+
+        Router::redirect('/records/index');
 
     }
 }
