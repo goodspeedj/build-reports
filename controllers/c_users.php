@@ -58,6 +58,7 @@ class users_controller extends base_controller {
         }
 
         else {
+
            // Insert the user information
             DB::instance(DB_NAME)->insert_row('users', $_POST);
 
@@ -110,10 +111,9 @@ class users_controller extends base_controller {
         $token = $data['token'];
         $email = $data['email'];
 
-
         if ($token) {
             setcookie('token', $token, strtotime('+1 year'), '/');
-            Router::redirect('/posts/index');
+            Router::redirect('/records/index');
         }
         else {
             Router::redirect("/users/login/err");
