@@ -113,7 +113,7 @@ class users_controller extends base_controller {
 
         if ($token) {
             setcookie('token', $token, strtotime('+1 year'), '/');
-            Router::redirect('/records/index');
+            Router::redirect('/index/index');
         }
         else {
             Router::redirect("/users/login/err");
