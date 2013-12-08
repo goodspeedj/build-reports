@@ -53,7 +53,15 @@
             <li><a href="/records/add">Add Build</a></li>
           </ul>
         </li>
-        <li><a href="/users/login">Login</a></li>
+        <li>
+
+      <?php if(!$user): ?>
+        <a href="/users/login">Login</a>
+      <?php else: ?>
+        <a href="/users/logout">Logout</a>
+      <?php endif; ?>
+
+        </li>
       </ul>
     </div>
   </div>
