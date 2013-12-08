@@ -6,9 +6,9 @@
     <form id="form-signin" method="post" action="/users/p_login">
       <div class="form-group">
 
-        <h3 class="form-signin-heading">Please sign in</h3>
+        <h3 class="center form-signin-heading">Please sign in</h3>
         <input class="form-control" type="email" name="email" placeholder="Email address" required>
-        <br /><br />
+        <br />
         <input class="form-control" type="password" name="password" placeholder="Password" required>
           
         <!-- Check for bad user name / password -->
@@ -21,12 +21,13 @@
 
         <?php endif; ?>
 
+        <br />
 
-
-        <p><a href="/users/signup">Register for account</a></p>
+        <p class="center"><a href="/users/signup">Register for account</a></p>
         <p>&nbsp;</p>
-          
-        <button class="btn" type="submit">Log in</button>
+        <div class="center">
+          <button class="btn btn-primary" type="submit">Log in</button>
+        </div>
       </div>
     </form>
 
