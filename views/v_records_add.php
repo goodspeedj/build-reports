@@ -1,35 +1,62 @@
-<form id="record-add" method="POST" action="/records/p_add">
+<div class="container">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
 
-  <label for="component_id">Component</label>
-  <select name="component_id">
+    <form class="form-horizontal" id="record-add" method="POST" action="/records/p_add">
+      <div class="form-group">
 
-  <?php foreach ($components as $component): ?>
-    <option><?= $component['name']; ?></option>
-  <?php endforeach; ?>
+        <label class="col-sm-3" for="component_id">Component</label>
+        <div class="col-sm-9">
+          <select class="form-control" name="component_id">
 
-  </select>
+          <?php foreach ($components as $component): ?>
+            <option><?= $component['name']; ?></option>
+          <?php endforeach; ?>
 
-  <br />
+          </select>
+        </div>
 
-  <label for="build_num">Build Number</label>
-  <input type="text" name="build_num" placeholder="Build #" required>
+        <br /><br />
 
-  <br />
+        <label class="col-sm-3" for="build_num">Build Number</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="build_num" placeholder="Build #" required>
+        </div>
 
-  <label for="job_name">Job Name</label>
-  <input type="text" name="job_name" placeholder="Job Name" required>
+        <br /><br />
 
-  <br />
+        <label class="col-sm-3" for="job_name">Job Name</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="job_name" placeholder="Job Name" required>
+        </div>
 
-  <label for="status">Status</label>
-  <select name="status">
-    <option>Stable</option>
-    <option>Unstable</option>
-    <option>Failed</option>
-  </select>
+        <br /><br />
 
-  <label for="duration">Duration</label>
-  <input type="text" name="duration" placeholder="Build Time" required>
-  <br />
-  <button type="submit" class="btn">Submit</button>
-</form>
+        <label class="col-sm-3" for="status">Status</label>
+        <div class="col-sm-9">
+          <select class="form-control" name="status">
+            <option>Stable</option>
+            <option>Unstable</option>
+            <option>Failed</option>
+          </select>
+        </div>
+
+        <br /><br />
+
+        <label class="col-sm-3" for="duration">Duration</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="duration" placeholder="Build Time" required>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 center">
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-3"></div>
+</div>
