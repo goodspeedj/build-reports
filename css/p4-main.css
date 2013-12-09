@@ -2,6 +2,12 @@ html,body {
   height: 100%;
 }
 
+table.profile td {
+  padding: 7px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+}
+
 #footer {
   height: 60px;
   background-color: #F5F5F5;
