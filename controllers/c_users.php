@@ -230,8 +230,9 @@ class users_controller extends base_controller {
         if ($user_id) {
 
             $sql = "SELECT * 
-                    FROM users
-                    WHERE user_id = ".$user_id;
+                    FROM users, roles
+                    WHERE user_id = ".$user_id . "
+                    AND users.role_id = roles.role_id";
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 
