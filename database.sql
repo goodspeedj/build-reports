@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 07, 2013 at 04:25 AM
+-- Generation Time: Dec 09, 2013 at 02:29 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -120,11 +120,33 @@ INSERT INTO `products` (`product_id`, `name`, `desc`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `role_id_UNIQUE` (`role_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `type`) VALUES
+(1, 'User'),
+(2, 'Administrator');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
   `created` int(11) NOT NULL,
   `modified` int(11) NOT NULL,
   `token` varchar(255) NOT NULL,
@@ -135,16 +157,17 @@ CREATE TABLE `users` (
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_id_UNIQUE` (`user_id`)
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
+  KEY `role_id_idx` (`role_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `created`, `modified`, `token`, `password`, `last_login`, `timezone`, `first_name`, `last_name`, `email`) VALUES
-(3, 1386386583, 0, 'db1c2f777166cb56b19406514331a6eb5c673f4e', 'fe403bb05822366109f5616344fe357c0eb20135', 0, NULL, 'John', 'Harvard', 'john@fas.harvard.edu'),
-(4, 1386386657, 0, '8ff3b4a128f3ab7150d7fcef7f4661ef16520d81', '8690255d680e0148a01a27b5a73e2646a78df223', 0, NULL, 'Jim', 'Goodspeed', 'jgoodsp@fas.harvard.edu');
+INSERT INTO `users` (`user_id`, `role_id`, `created`, `modified`, `token`, `password`, `last_login`, `timezone`, `first_name`, `last_name`, `email`) VALUES
+(3, 1, 1386386583, 0, 'db1c2f777166cb56b19406514331a6eb5c673f4e', 'fe403bb05822366109f5616344fe357c0eb20135', 0, NULL, 'John', 'Harvard', 'john@fas.harvard.edu'),
+(4, 2, 1386386657, 0, '7f3334f0773e7f4d2a40f2e44448b0f259eb5170', '8690255d680e0148a01a27b5a73e2646a78df223', 0, NULL, 'Jim', 'Goodspeed', 'jgoodsp@fas.harvard.edu');
 
 --
 -- Constraints for dumped tables
