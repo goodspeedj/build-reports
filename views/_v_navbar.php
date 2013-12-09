@@ -41,6 +41,9 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+
+      <!-- Only display the admin link for admin users -->
+      <?php if($user && $user->role_id == 2): ?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -53,6 +56,8 @@
             <li><a href="/records/add">Add Build</a></li>
           </ul>
         </li>
+      <?php endif; ?>
+
         <li>
 
       <?php if(!$user): ?>
