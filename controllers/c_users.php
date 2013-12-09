@@ -195,7 +195,8 @@ class users_controller extends base_controller {
             "first_name" => $_POST['first_name'],
             "last_name"  => $_POST['last_name'],
             "email"      => $_POST['email'],
-            "password"   => $_POST['password'] 
+            "password"   => $_POST['password'], 
+            "role_id"    => $_POST['role_id']
             ); 
         
 
