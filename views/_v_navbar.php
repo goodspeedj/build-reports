@@ -42,6 +42,16 @@
 
       <ul class="nav navbar-nav navbar-right">
 
+      <?php if($user): ?>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $user->first_name ?> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/users/profile">View Profile</a></li>
+            <li><a href="/users/edit">Edit Profile</a></li>
+          </ul>
+        </li>
+      <?php endif; ?>
+
       <!-- Only display the admin link for admin users -->
       <?php if($user && $user->role_id == 2): ?>
         <li class="dropdown">
