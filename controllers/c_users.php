@@ -75,7 +75,7 @@ class users_controller extends base_controller {
 
         // Bypass the login if the user has a cookie
         if (isset($_COOKIE['token'])) {
-            Router::redirect('/posts/index');
+            Router::redirect('/index/index');
         }
 
         // Otherwise display the login form
