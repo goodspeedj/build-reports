@@ -44,7 +44,7 @@
     var datasource = <?php echo json_encode($data); ?>;
     console.log(datasource); 
 
-    d3.json(data, function(error, data) {
+    d3.json(datasource, function(error, data) {
         color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
         data.forEach(function(d) {
@@ -88,6 +88,5 @@
             .attr("class", "y axis")
             .call(yAxis);
       });
-    });
   </script>
 </div>
