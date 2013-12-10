@@ -37,7 +37,7 @@ class reports_controller extends base_controller {
                        COUNT(status) AS count,
                        FROM_UNIXTIME(created, '%Y-%m-%d') AS date
                 FROM builds
-                GROUP BY status, date";
+                GROUP BY date, status";
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
 
