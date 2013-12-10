@@ -63,5 +63,6 @@
   <script src="/js/jquery.dataTables.min.js"></script>
   <script src="/js/dataTables.bootstrap.js"></script>
   <script src="/js/p4-records.js"></script>
+  <script src="/js/d3.v3.min.js"></script>
 </body>
 </html>
