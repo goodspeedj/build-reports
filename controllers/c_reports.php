@@ -26,26 +26,18 @@ class reports_controller extends base_controller {
     }
 
 
-    public function data() {
+    public function statusByDate() {
 
     	// Setup the view
         $this->template->content = View::instance('v_reports_data');
-        $this->template->title   = "Build Reports";
+        $this->template->title   = "Build Reports: Status by Date";
 
         // Get the build records
-        $sql = "SELECT components.name AS comp_name, 
-                       products.name AS prod_name, 
-                       builds.build_num, 
-                       builds.status,
-                       builds.created, 
-                       builds.duration,
-                       builds.job_name
+        $sql = "SELECT DISTINCT status, 
+                       COUNT(status) AS count,
+                       FROM_UNIXTIME(created, '%Y-%m-%d') AS date
                 FROM builds
-                INNER JOIN components
-                    ON builds.component_id = components.component_id
-                INNER JOIN products
-                    ON components.product_id = products.product_id
-                ORDER BY builds.created";
+                GROUP BY status, date";
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
 
