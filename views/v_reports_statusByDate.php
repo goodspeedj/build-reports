@@ -41,7 +41,53 @@
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    var data = <?php echo json_encode($data); ?>;
-    console.log(data); 
+    var datasource = <?php echo json_encode($data); ?>;
+    console.log(datasource); 
+
+    d3.json(data, function(error, data) {
+        color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+        data.forEach(function(d) {
+          d.date = parseDate(d.date);
+        });
+
+        var statuses = stack(color.domain().map(function(name) {
+            return {
+                name: name,
+                values: data.map(function(d) {
+                    return {date: d.date, y: d.name}
+                })
+            };
+        }));
+
+        x.domain(d3.extent(data, function(d) { return d.date; }));
+
+        var status = svg.selectAll(".status")
+            .data(statuses)
+          .enter().append("g")
+            .attr("class", "status");
+
+        status.append("path")
+            .attr("class", "area")
+            .attr("d", function(d) { return area(d.values); })
+            .style("fill", function(d) { return color(d.name); });
+
+        status.append("text")
+            .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+            .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
+            .attr("x", -6)
+            .attr("dy", ".35em")
+            .text(function(d) { return d.name; });
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+      });
+    });
   </script>
 </div>
