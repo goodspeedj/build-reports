@@ -29,7 +29,7 @@ class reports_controller extends base_controller {
     public function statusByDate() {
 
     	// Setup the view
-        $this->template->content = View::instance('v_reports_data');
+        $this->template->content = View::instance('v_reports_statusByDate');
         $this->template->title   = "Build Reports: Status by Date";
 
         // Get the build records
