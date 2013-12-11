@@ -1,92 +1,95 @@
 <div class="container">
   <h4>Build Reports</h4>
 
-  <div id="report"></div>
+  <div id="graph"></div>
 
   <script>
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+
+    var format = d3.time.format("%m/%d/%y");
+
+    var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
-  
-    var parseDate = d3.time.format("%y-%b-%d").parse;
 
     var x = d3.time.scale()
               .range([0, width]);
 
     var y = d3.scale.linear()
               .range([height, 0]);
+              console.log(y);
 
-    var color = d3.scale.category20();
+    var z = d3.scale.category20c();
 
     var xAxis = d3.svg.axis()
                   .scale(x)
-                  .orient("bottom");
+                  .orient("bottom")
+                  .ticks(d3.time.days);
 
     var yAxis = d3.svg.axis()
                   .scale(y)
-                  .orient("left")
-  
+                  .orient("left");
+
+    var stack = d3.layout.stack()
+                  .offset("zero")
+                  .values(function(d) { console.log(JSON.stringify(d.values, undefined, 2)); return d.values; })
+                  .x(function(d) { return d.date; })
+                  .y(function(d) { return d.count; });
+
+    var nest = d3.nest()
+                  .key(function(d) { return d.status; });
+
     var area = d3.svg.area()
+                  .interpolate("cardinal")
                   .x(function(d) { return x(d.date); })
                   .y0(function(d) { return y(d.y0); })
                   .y1(function(d) { return y(d.y0 + d.y); });
 
-    var stack = d3.layout.stack()
-                  .values(function(d) { return d.values; });
-
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#graph").append("svg")
                   .attr("width", width + margin.left + margin.right)
                   .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    var data = <?php echo json_encode($data); ?>;
+    //console.log(data); 
+    //console.log(JSON.stringify(data, undefined, 2));
 
-    var datasource = <?php echo json_encode($data); ?>;
-    console.log(datasource); 
 
-    d3.json(datasource, function(error, data) {
-        color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+    data.forEach(function(d) {
+      d.date = format.parse(d.date);
+      d.count = +d.count;
+    });
 
-        data.forEach(function(d) {
-          d.date = parseDate(d.date);
-        });
+    
+    //console.log("error spot: " + JSON.stringify(stack(nest.entries(data)), undefined, 2));
 
-        var statuses = stack(color.domain().map(function(name) {
-            return {
-                name: name,
-                values: data.map(function(d) {
-                    return {date: d.date, y: d.name}
-                })
-            };
-        }));
+    //var layers = stack(nest.entries(data));   //  THIS IS EXPECTING TO HAVE THE SAME NUMBER OF VALUES FOR EACH GROUP!!!!!
+    var layers;
+    if (stack) {
+      console.log("in the if");
+      layers = stack(nest.entries(data));
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
-        x.domain(d3.extent(data, function(d) { return d.date; }));
+    svg.selectAll(".layer")
+      .data(layers)
+    .enter().append("path")
+      .attr("class", "layer")
+      .attr("d", function(d) { console.log(d.values); return area(d.values); })
+      .style("fill", function(d, i) { return z(i); });
 
-        var status = svg.selectAll(".status")
-            .data(statuses)
-          .enter().append("g")
-            .attr("class", "status");
+      svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-        status.append("path")
-            .attr("class", "area")
-            .attr("d", function(d) { return area(d.values); })
-            .style("fill", function(d) { return color(d.name); });
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+    }
 
-        status.append("text")
-            .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-            .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
-            .attr("x", -6)
-            .attr("dy", ".35em")
-            .text(function(d) { return d.name; });
+    
+    
 
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
-
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis);
-      });
   </script>
 </div>

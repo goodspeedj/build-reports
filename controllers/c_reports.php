@@ -33,11 +33,12 @@ class reports_controller extends base_controller {
         $this->template->title   = "Build Reports: Status by Date";
 
         // Get the build records
-        $sql = "SELECT DISTINCT status, 
-                       COUNT(status) AS count,
-                       FROM_UNIXTIME(created, '%Y-%m-%d') AS date
+        $sql = "SELECT FROM_UNIXTIME(created, '%m/%d/%y') AS date,
+                       status, 
+                       COUNT(status) AS count
                 FROM builds
-                GROUP BY date, status";
+                GROUP BY date, status
+                ORDER BY date DESC";
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
 
