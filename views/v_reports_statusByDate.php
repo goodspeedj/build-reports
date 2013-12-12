@@ -19,7 +19,9 @@
     var y = d3.scale.linear()
               .range([height, 0]);
 
-    var z = d3.scale.category20();
+    //var z = d3.scale.category20();
+    var indicators = ["Stable","Unstable","Failed"];
+    var z = d3.scale.ordinal().domain(indicators).range(["#1a9641","#fee08b","#d7191c"]);
 
     var xAxis = d3.svg.axis()
                   .scale(x)
