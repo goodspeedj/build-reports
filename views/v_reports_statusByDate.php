@@ -5,6 +5,8 @@
 
   <script>
 
+    var data = <?php echo json_encode($data); ?>;
+    
     var format = d3.time.format("%m/%d/%y");
 
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
@@ -16,7 +18,6 @@
 
     var y = d3.scale.linear()
               .range([height, 0]);
-              console.log(y);
 
     var z = d3.scale.category20();
 
@@ -26,6 +27,7 @@
                   .ticks(d3.time.days);
 
     var yAxis = d3.svg.axis()
+                  .tickFormat(d3.format("d"))
                   .scale(y)
                   .orient("left");
 
@@ -49,8 +51,6 @@
                   .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    var data = <?php echo json_encode($data); ?>;
 
 
     data.forEach(function(d) {
