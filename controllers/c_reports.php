@@ -47,4 +47,23 @@ class reports_controller extends base_controller {
         // Display the view
         echo $this->template;
     }
+
+
+    public function scatter() {
+
+      // Setup the view
+        $this->template->content = View::instance('v_reports_scatter');
+        $this->template->title   = "Build Reports: Scatterplot";
+
+        // Get the build records
+        $sql = "SELECT FROM_UNIXTIME(created, '%Y-%m-%d') as date, status, duration 
+                FROM builds;";
+
+        $data = DB::instance(DB_NAME)->select_rows($sql);
+
+        $this->template->content->data = $data;
+
+        // Display the view
+        echo $this->template;
+    }
 }
