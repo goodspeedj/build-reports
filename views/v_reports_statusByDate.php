@@ -18,7 +18,7 @@
               .range([height, 0]);
               console.log(y);
 
-    var z = d3.scale.category20c();
+    var z = d3.scale.category20();
 
     var xAxis = d3.svg.axis()
                   .scale(x)
@@ -31,7 +31,7 @@
 
     var stack = d3.layout.stack()
                   .offset("zero")
-                  .values(function(d) { console.log(JSON.stringify(d.values, undefined, 2)); return d.values; })
+                  .values(function(d) { return d.values; })
                   .x(function(d) { return d.date; })
                   .y(function(d) { return d.count; });
 
@@ -51,8 +51,6 @@
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var data = <?php echo json_encode($data); ?>;
-    //console.log(data); 
-    //console.log(JSON.stringify(data, undefined, 2));
 
 
     data.forEach(function(d) {
@@ -60,22 +58,18 @@
       d.count = +d.count;
     });
 
-    
-    //console.log("error spot: " + JSON.stringify(stack(nest.entries(data)), undefined, 2));
 
-    //var layers = stack(nest.entries(data));   //  THIS IS EXPECTING TO HAVE THE SAME NUMBER OF VALUES FOR EACH GROUP!!!!!
-    var layers;
-    if (stack) {
-      console.log("in the if");
-      layers = stack(nest.entries(data));
-      x.domain(d3.extent(data, function(d) { return d.date; }));
+    var layers = stack(nest.entries(data));
+
+    layers = stack(nest.entries(data));
+    x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
     svg.selectAll(".layer")
       .data(layers)
     .enter().append("path")
       .attr("class", "layer")
-      .attr("d", function(d) { console.log(d.values); return area(d.values); })
+      .attr("d", function(d) { return area(d.values); })
       .style("fill", function(d, i) { return z(i); });
 
       svg.append("g")
@@ -83,13 +77,9 @@
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
+    svg.append("g")
       .attr("class", "y axis")
       .call(yAxis);
-    }
-
-    
-    
 
   </script>
 </div>

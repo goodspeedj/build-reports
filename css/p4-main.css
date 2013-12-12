@@ -31,6 +31,12 @@ table.profile td {
   padding: 70px 0 60px;
 }
 
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
 .bold {
   font-weight: bold;
 }
