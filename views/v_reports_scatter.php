@@ -13,5 +13,22 @@
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
+    var svg = d3.select("#graph")
+    			.append("svg")
+    			.attr("width", width)
+    			.attr("height", height);
+
+   	d3.selectAll("circle")
+   		.data(data)
+   		.enter()
+   		.append("circle")
+   		.attr("cx", function(d) {
+        	return d[0];
+   		})
+   		.attr("cy", function(d) {
+        	return d[1];
+   		})
+   		.attr("r", 5);
+
   </script>
 </div>
