@@ -32,13 +32,50 @@ class reports_controller extends base_controller {
         $this->template->content = View::instance('v_reports_statusByDate');
         $this->template->title   = "Build Reports: Status by Date";
 
-        // Get the build records
-        $sql = "SELECT FROM_UNIXTIME(created, '%m/%d/%y') AS date,
-                       status, 
-                       COUNT(status) AS count
-                FROM builds
-                GROUP BY date, status
-                ORDER BY date DESC";
+        // Get the build records - date, status and count.  Complext query needed to return
+        // 0 counts for all days and all statuses if there are no coresponding records
+        $sql = "SELECT 
+                  allRecords.Date,
+                  allRecords.Name,
+                  ( SELECT 
+                      COUNT(statuses.status_id)
+                    FROM statuses, builds, calendar
+                    WHERE builds.status_id = statuses.status_id
+                      AND FROM_UNIXTIME(builds.created, '%Y-%m-%d') = calendar.date
+                      AND calendar.date = allRecords.date
+                      AND statuses.name = allRecords.Name
+                  ) as Count
+
+                FROM 
+                  ( SELECT calendar.date,
+                      statuses.status_id,
+                      statuses.name
+                    FROM
+                      calendar,
+                      statuses
+                    ORDER BY
+                      calendar.date,
+                      statuses.name  ) allRecords
+
+                LEFT JOIN builds
+                  ON builds.status_id =  allRecords.status_id
+
+                LEFT JOIN statuses
+                  ON builds.status_id = statuses.status_id
+
+                WHERE allRecords.date BETWEEN 
+                  (SELECT MIN(FROM_UNIXTIME(builds.created, '%Y-%m-%d')) FROM builds) 
+                AND 
+                  (SELECT MAX(FROM_UNIXTIME(builds.created, '%Y-%m-%d')) FROM builds)
+
+                GROUP BY
+                  allRecords.Date,
+                  allRecords.Name
+
+                ORDER BY 
+                  allRecords.Date,
+                  allRecords.Name";
+
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
 
