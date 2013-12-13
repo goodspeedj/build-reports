@@ -6,7 +6,9 @@
   <script>
 
     var data = <?php echo json_encode($data); ?>;
-    
+   
+    console.log(JSON.stringify(data,undefined, 2));
+ 
     var format = d3.time.format("%m/%d/%y");
 
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
@@ -35,8 +37,8 @@
 
     var stack = d3.layout.stack()
                   .offset("zero")
-                  .values(function(d) { return d.values; })
-                  .x(function(d) { return d.Date; })
+                  .values(function(d) { console.log(d.values); return d.values; })
+                  .x(function(d) { console.log("date: " + d.date); return d.date; })
                   .y(function(d) { return d.Count; });
 
     var nest = d3.nest()
@@ -44,7 +46,7 @@
 
     var area = d3.svg.area()
                   .interpolate("cardinal")
-                  .x(function(d) { return x(d.Date); })
+                  .x(function(d) { return x(d.date); })
                   .y0(function(d) { return y(d.y0); })
                   .y1(function(d) { return y(d.y0 + d.y); });
 
@@ -56,7 +58,8 @@
 
 
     data.forEach(function(d) {
-      d.Date = format.parse(d.Date);
+      console.log(format.parse("2011-01-01"));   // THIS IS IN THE WRONG FORMAT - NEEDS TO BE %Y-%m-%dT%H:%M:%SZ
+      d.date = format.parse(d.date);
       d.Count = +d.Count;
     });
 
@@ -64,7 +67,7 @@
     var layers = stack(nest.entries(data));
 
     layers = stack(nest.entries(data));
-    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
     svg.selectAll(".layer")

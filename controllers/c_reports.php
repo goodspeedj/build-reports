@@ -35,7 +35,7 @@ class reports_controller extends base_controller {
         // Get the build records - date, status and count.  Complext query needed to return
         // 0 counts for all days and all statuses if there are no coresponding records
         $sql = "SELECT 
-                  allRecords.Date,
+                  allRecords.date,
                   allRecords.Name,
                   ( SELECT 
                       COUNT(statuses.status_id)
@@ -69,11 +69,11 @@ class reports_controller extends base_controller {
                   (SELECT MAX(FROM_UNIXTIME(builds.created, '%Y-%m-%d')) FROM builds)
 
                 GROUP BY
-                  allRecords.Date,
+                  allRecords.date,
                   allRecords.Name
 
                 ORDER BY 
-                  allRecords.Date,
+                  allRecords.date,
                   allRecords.Name";
 
 
