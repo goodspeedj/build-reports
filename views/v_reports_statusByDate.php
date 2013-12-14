@@ -7,7 +7,7 @@
 
     var data = <?php echo json_encode($data); ?>;
    
-    console.log(JSON.stringify(data,undefined, 2));
+    //console.log(JSON.stringify(data,undefined, 2));
  
     var format = d3.time.format("%m/%d/%y");
 
@@ -37,15 +37,15 @@
 
     var stack = d3.layout.stack()
                   .offset("zero")
-                  .values(function(d) { console.log(d.values); return d.values; })
-                  .x(function(d) { console.log("date: " + d.date); return d.date; })
+                  .values(function(d) { return d.values; })
+                  .x(function(d) { return d.date; })
                   .y(function(d) { return d.Count; });
 
     var nest = d3.nest()
                   .key(function(d) { return d.Name; });
 
     var area = d3.svg.area()
-                  .interpolate("cardinal")
+                  //.interpolate("cardinal")
                   .x(function(d) { return x(d.date); })
                   .y0(function(d) { return y(d.y0); })
                   .y1(function(d) { return y(d.y0 + d.y); });
@@ -58,8 +58,9 @@
 
 
     data.forEach(function(d) {
-      console.log(format.parse("2011-01-01"));   // THIS IS IN THE WRONG FORMAT - NEEDS TO BE %Y-%m-%dT%H:%M:%SZ
-      d.date = format.parse(d.date);
+      var date = new Date(d.date);
+      var date = moment(d.date).format('MM/DD/YY');
+      d.date = format.parse(date);
       d.Count = +d.Count;
     });
 

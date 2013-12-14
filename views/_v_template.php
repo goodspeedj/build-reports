@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="/css/p4-main.css">               
 
   <script src="/js/d3.v3.min.js"></script>
+  <script src="/js/moment.min.js"></script>
   
   <!-- Controller Specific JS/CSS -->
   <?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -65,5 +66,6 @@
   <script src="/js/jquery.dataTables.min.js"></script>
   <script src="/js/dataTables.bootstrap.js"></script>
   <script src="/js/p4-records.js"></script>
+  
 </body>
 </html>
