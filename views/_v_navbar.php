@@ -31,12 +31,12 @@
           <a href="/records/index">Records</a>
         </li>
 
-      <?php if($_SERVER['REQUEST_URI'] == "/reports/index"): ?>
-        <li class="active">
-      <?php else: ?>
-        <li>
-      <?php endif; ?>
-          <a href="/reports/index">Reports</a>
+        <li class="dropdown">
+          <a href="/reports/index" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reports/statusByDate">Builds by Status</a></li>
+            <li><a href="/reports/scatter">Builds by Date/Duration</a></li>
+          </ul>
         </li>
       </ul>
 
