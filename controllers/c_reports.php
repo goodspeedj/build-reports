@@ -93,8 +93,13 @@ class reports_controller extends base_controller {
         $this->template->title   = "Build Reports: Scatterplot";
 
         // Get the build records
-        $sql = "SELECT FROM_UNIXTIME(created, '%Y-%m-%d') as date, status, duration 
-                FROM builds;";
+        $sql = "SELECT 
+                  FROM_UNIXTIME(created, '%Y-%m-%d') as date, 
+                  statuses.name as status, 
+                  duration 
+                FROM builds
+                LEFT JOIN statuses
+                  ON builds.status_id = statuses.status_id";
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
 
