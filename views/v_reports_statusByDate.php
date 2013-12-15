@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>Build Reports</h4>
+  <h4>Build Report: Builds by Status</h4>
 
   <div id="graph"></div>
 
