@@ -5,6 +5,11 @@
 
   <script>
 
+    /**
+     * The code for this graph was based on the following example:
+     * Michael Bostock, "Stacked Area Via Nest", mbostock’s block #3020685, 
+     * Accessed December 5, 2013, June 29, 2012, http://bl.ocks.org/mbostock/3020685
+     */
     var data = <?php echo json_encode($data); ?>;
    
     //console.log(JSON.stringify(data,undefined, 2));
