@@ -27,7 +27,7 @@ class records_controller extends base_controller {
         $sql = "SELECT components.name AS comp_name, 
                        products.name AS prod_name, 
                        builds.build_num, 
-                       builds.status,
+                       builds.status_id,
                        builds.created, 
                        builds.duration,
                        builds.job_name
@@ -36,6 +36,8 @@ class records_controller extends base_controller {
                     ON builds.component_id = components.component_id
                 INNER JOIN products
                     ON components.product_id = products.product_id
+                INNER JOIN statuses
+                    ON statuses.status_id = builds.status_id
                 ORDER BY builds.created";
 
         $records = DB::instance(DB_NAME)->select_rows($sql);

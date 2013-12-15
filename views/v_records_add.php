@@ -32,12 +32,12 @@
 
         <br /><br />
 
-        <label class="col-sm-3" for="status">Status</label>
+        <label class="col-sm-3" for="status_id">Status</label>
         <div class="col-sm-9">
-          <select class="form-control" name="status">
-            <option>Stable</option>
-            <option>Unstable</option>
-            <option>Failed</option>
+          <select class="form-control" name="status_id">
+            <option value="1">Stable</option>
+            <option value="2">Unstable</option>
+            <option value="3">Failed</option>
           </select>
         </div>
 

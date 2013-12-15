@@ -20,7 +20,15 @@
       <td><?= clean($row['comp_name']); ?></td>
       <td><?= clean($row['build_num']); ?></td>
       <td><?= clean($row['job_name']); ?></td>
-      <td><?= clean($row['status']); ?></td>
+      <td>
+        <?php if (clean($row['status_id']) == 1): ?>
+          Stable
+        <?php elseif (clean($row['status_id']) == 2): ?>
+          Unstable
+        <?php else: ?>
+          Failed
+        <?php endif; ?>
+      </td>
       <td><?= clean($row['duration']); ?></td>
       <td><?= clean(date("Y-m-d H:i:s", $row['created'])); ?></td>
     </tr>
