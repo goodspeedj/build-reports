@@ -22,7 +22,7 @@
     var maxDate = d3.min(data, function(d) { return d.date });
 
     var x = d3.time.scale()
-              .range([0, width]);
+              .range([5, width]);
 
     var y = d3.scale.linear()
               .range([height, 0]);
@@ -35,7 +35,7 @@
     var yAxis = d3.svg.axis()
                   .tickFormat(d3.format("d"))
                   .scale(y)
-                  .ticks(5)
+                  .ticks(10)
                   .orient("left");
 
     data.forEach(function(d) {
@@ -45,13 +45,15 @@
       d.duration = +d.duration;
     });
 
-    x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.duration; })]);
+    x.domain(d3.extent(data, function(d) { return d.date; }));
 
-    var svg = d3.select("#graph")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height);
+
+    var svg = d3.select("#graph").append("svg")
+                  .attr("width", width + margin.left + margin.right)
+                  .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       svg.selectAll("circle")
          .data(data)
@@ -64,11 +66,23 @@
             return y(d.duration);
          })
          .attr("r", 5)
-         .attr("fill", "red");
+         .attr("fill", function(d) {
+            var color;
+            if (d.status == 'Stable') {
+                color = "#1a9641";
+            }
+            else if (d.status == 'Unstable') {
+                color = "#fee08b";
+            }
+            else {
+                color = "#d7191c";
+            }
+            return color;
+         });
 
     svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(-5," + height + ")")
       .call(xAxis);
 
     svg.append("g")
