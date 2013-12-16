@@ -74,7 +74,11 @@ class reports_controller extends base_controller {
 
                 ORDER BY 
                   allRecords.date,
-                  allRecords.Name";
+                  CASE allRecords.Name
+                    WHEN 'Stable' THEN 1
+                    WHEN 'Unstable' THEN 2
+                    WHEN 'Failed' THEN 3
+                  ELSE 100 END";
 
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
@@ -96,10 +100,15 @@ class reports_controller extends base_controller {
         $sql = "SELECT 
                   FROM_UNIXTIME(created, '%Y-%m-%d') as date, 
                   statuses.name as status, 
-                  duration 
+                  duration,
+                  products.name as product 
                 FROM builds
                 LEFT JOIN statuses
-                  ON builds.status_id = statuses.status_id";
+                  ON builds.status_id = statuses.status_id
+                LEFT JOIN components
+                  ON builds.component_id = components.component_id
+                LEFT JOIN products
+                  ON products.product_id = components.product_id";
 
         $data = DB::instance(DB_NAME)->select_rows($sql);
 
