@@ -26,10 +26,9 @@
     var y = d3.scale.linear()
               .range([height, 0]);
 
-    //var z = d3.scale.category20();
     var indicators = ["Stable","Unstable","Failed"];
-    //var z = d3.scale.ordinal().domain(indicators).range(["#157F1B ","#FFE633","#7F1412"]);
-    var z = d3.scale.ordinal().domain(indicators).range(["#7F1412 ","#157F1B","#FFE633"]);
+    var z = d3.scale.ordinal().domain(indicators).range(["#157F1B ","#FFE633","#7F1412"]);
+    //var z = d3.scale.ordinal().domain(indicators).range(["#7F1412 ","#157F1B","#FFE633"]);
 
     var xAxis = d3.svg.axis()
                   .scale(x)
