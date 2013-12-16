@@ -28,7 +28,7 @@
 
     //var z = d3.scale.category20();
     var indicators = ["Stable","Unstable","Failed"];
-    var z = d3.scale.ordinal().domain(indicators).range(["#1a9641","#fee08b","#d7191c"]);
+    var z = d3.scale.ordinal().domain(indicators).range(["#157F1B ","#FFE633","#7F1412"]);
 
     var xAxis = d3.svg.axis()
                   .scale(x)

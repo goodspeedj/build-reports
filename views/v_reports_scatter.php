@@ -43,6 +43,7 @@
       var date = moment(d.date).format('MM/DD/YY');
       d.date = format.parse(date);
       d.duration = +d.duration;
+      d.product = +d.product;
     });
 
     y.domain([0, d3.max(data, function(d) { return d.duration; })]);
@@ -54,6 +55,8 @@
                   .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    //console.log(data['duration']);
 
       svg.selectAll("circle")
          .data(data)
@@ -69,6 +72,35 @@
          .attr("fill", function(d) {
             var color;
             if (d.status == 'Stable') {
+                color = "#157F1B";
+            }
+            else if (d.status == 'Unstable') {
+                color = "#FFE633";
+            }
+            else {
+                color = "#CC0800";
+            }
+            return color;
+         });
+    
+
+    /*
+    else {
+      svg.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) {
+            return x(d.date);
+         })
+        .attr("y", function(d) {
+            return y(d.duration);
+         })
+        .attr("width", 5)
+        .attr("height", 5)
+        .attr("fill", function(d) {
+            var color;
+            if (d.status == 'Stable') {
                 color = "#1a9641";
             }
             else if (d.status == 'Unstable') {
@@ -79,6 +111,8 @@
             }
             return color;
          });
+    }
+    */
 
     svg.append("g")
       .attr("class", "x axis")
