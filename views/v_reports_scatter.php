@@ -1,5 +1,10 @@
 <div class="container">
-  <h4>Build Reports</h4>
+  <h4>Build Reports: Build Time by Date</h4>
+    The following graph shows build duration (time) by date.  The color encoding indicates whether the build 
+    was Stable (green), Unstable (yellow) or Failed (red).  The size of the dot indicates the percentage of 
+    code coverage (the bigger the dot the higer percentage).
+
+    <p>&nbsp;</p>
 
   <div id="graph"></div>
 
@@ -22,7 +27,7 @@
     var maxDate = d3.min(data, function(d) { return d.date });
 
     var x = d3.time.scale()
-              .range([5, width]);
+              .range([10, width]);
 
     var y = d3.scale.linear()
               .range([height, 0]);
@@ -68,7 +73,9 @@
          .attr("cy", function(d) {
             return y(d.duration);
          })
-         .attr("r", 5)
+         .attr("r", function(d) {
+            return ((d.coverage / 100) * 10)
+         })
          .attr("fill", function(d) {
             var color;
             if (d.status == 'Stable') {
@@ -116,7 +123,7 @@
 
     svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(-5," + height + ")")
+      .attr("transform", "translate(-10," + height + ")")
       .call(xAxis);
 
     svg.append("g")

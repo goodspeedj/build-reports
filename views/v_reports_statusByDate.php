@@ -1,5 +1,9 @@
 <div class="container">
   <h4>Build Report: Builds by Status</h4>
+    The following graph shows the number of builds by status, by date.  Green indicates a Stable build, yellow 
+    indicates Unstable and red indicates a Failed build.
+
+  <p>&nbsp;</p>
 
   <div id="graph"></div>
 
