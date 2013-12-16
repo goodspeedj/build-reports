@@ -98,10 +98,11 @@ class reports_controller extends base_controller {
 
         // Get the build records
         $sql = "SELECT 
-                  FROM_UNIXTIME(created, '%Y-%m-%d') as date, 
-                  statuses.name as status, 
+                  FROM_UNIXTIME(created, '%Y-%m-%d') AS date, 
+                  statuses.name AS status, 
                   duration,
-                  products.name as product 
+                  products.name AS product,
+                  builds.coverage AS coverage
                 FROM builds
                 LEFT JOIN statuses
                   ON builds.status_id = statuses.status_id
