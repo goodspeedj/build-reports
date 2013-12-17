@@ -61,13 +61,13 @@ svg.selectAll("circle")
     .attr("fill", function(d) {
         var color;
         if (d.status == 'Stable') {
-            color = "#157F1B";
+            color = "#A2C21D";
         }
         else if (d.status == 'Unstable') {
-            color = "#FFE633";
+            color = "#FCE338";
         }
         else {
-            color = "#CC0800";
+            color = "#EF3434";
         }
         return color;
     });
