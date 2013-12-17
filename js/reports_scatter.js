@@ -45,7 +45,7 @@ var svg = d3.select("#graph").append("svg")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Add the circles to the graph
-svg.selectAll("circle")
+var circles = svg.selectAll("circle")
     .data(data)
     .enter()
     .append("circle")
@@ -81,3 +81,17 @@ svg.append("g")
 svg.append("g")
     .attr("class", "y axis")
     .call(yAxis);
+
+// Display tool tip on mouse hover
+circles
+    .on("mousemove", function(d,i) {
+      var mouse = d3.mouse(svg.node()).graph( function(d) { return parseInt(d); } );
+
+      tooltip
+        .classed("hidden", false)
+        .attr("style", "left:" + (mouse[0]+670) + "px;top:" + (mouse[1]+60) + "px")
+        .html(d.job_name)
+    })
+    .on("mouseout",  function(d,i) {
+      tooltip.classed("hidden", true)
+    });
