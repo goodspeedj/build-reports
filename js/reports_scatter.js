@@ -1,3 +1,5 @@
+console.log(JSON.stringify(data, undefined, 2));
+
 // Date format
 var format = d3.time.format("%m/%d/%y");
 
@@ -33,7 +35,6 @@ data.forEach(function(d) {
   var date = moment(d.date).format('MM/DD/YY');
   d.date = format.parse(date);
   d.duration = +d.duration;
-  d.product = +d.product;
 });
 
 // Setup the X and Y domains
@@ -93,7 +94,7 @@ circles
       tooltip
         .classed("hidden", false)
         .attr("style", "left:" + (mouse[0]+90) + "px;top:" + (mouse[1]+100) + "px")
-        .html(d.job_name)
+        .html("Job: " + d.job_name + "<br />Product: " + d.product + "<br />Test Coverage: " + d.coverage + "%<br />")
     })
     .on("mouseout",  function(d,i) {
       tooltip.classed("hidden", true)
