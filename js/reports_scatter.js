@@ -24,6 +24,9 @@ var yAxis = d3.svg.axis()
               .ticks(10)
               .orient("left");
 
+var tooltip = d3.select("#graph").append("div")
+        .attr("class", "tooltip");
+
 // Loop through the data
 data.forEach(function(d) {
   var date = new Date(d.date);
@@ -85,11 +88,11 @@ svg.append("g")
 // Display tool tip on mouse hover
 circles
     .on("mousemove", function(d,i) {
-      var mouse = d3.mouse(svg.node()).graph( function(d) { return parseInt(d); } );
+      var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
 
       tooltip
         .classed("hidden", false)
-        .attr("style", "left:" + (mouse[0]+670) + "px;top:" + (mouse[1]+60) + "px")
+        .attr("style", "left:" + (mouse[0]+90) + "px;top:" + (mouse[1]+100) + "px")
         .html(d.job_name)
     })
     .on("mouseout",  function(d,i) {
