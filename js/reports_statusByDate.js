@@ -90,7 +90,6 @@ svg.append("g")
 svg.append("g")
   .attr("class", "y axis")
   .call(yAxis);
-<<<<<<< HEAD
 
 var legend = svg.append("g")
   .attr("width", 30)
@@ -101,5 +100,4 @@ var legend = svg.append("g")
 legend.append("svg:line")
   .attr("x2", 20)
   .attr("class", "legend");
-=======
->>>>>>> f8246de1ddbf0b30db8c317f56810a3f8b5d3933
+
