@@ -102,7 +102,8 @@ class reports_controller extends base_controller {
                   statuses.name AS status, 
                   duration,
                   products.name AS product,
-                  builds.coverage AS coverage
+                  builds.coverage AS coverage,
+                  job_name
                 FROM builds
                 LEFT JOIN statuses
                   ON builds.status_id = statuses.status_id
