@@ -47,6 +47,7 @@ div.tooltip {
 .axis path, .axis line {
   fill: none;
   stroke: #000;
+  stroke-width: 1px;
   shape-rendering: crispEdges;
 }
 
@@ -63,7 +64,24 @@ div.tooltip {
   padding-left: 30px;
 }
 
+.stable {
+  stroke: #A2C21D;
+  stroke-width: 15px;  
+}
 
+.unstable {
+  stroke: #FCE338;
+  stroke-width: 15px;
+}
+
+.failed {
+  stroke: #EF3434;
+  stroke-width: 15px;
+}
+
+.legend {
+  font-size: 12px;
+}
 /* Override dataTables style */
 div.dataTables_length label {
   width: 460px;
