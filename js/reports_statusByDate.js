@@ -25,7 +25,7 @@ var z = d3.scale.ordinal().domain(indicators).range(["#A2C21D","#FCE338","#EF343
 var xAxis = d3.svg.axis()
               .scale(x)
               .orient("bottom")
-              .ticks(d3.time.days);
+              .ticks(10);
 
 var yAxis = d3.svg.axis()
               .tickFormat(d3.format("d"))
@@ -100,4 +100,3 @@ var legend = svg.append("g")
 legend.append("svg:line")
   .attr("x2", 20)
   .attr("class", "legend");
-
