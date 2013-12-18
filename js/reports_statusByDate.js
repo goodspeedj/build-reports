@@ -90,3 +90,13 @@ svg.append("g")
 svg.append("g")
   .attr("class", "y axis")
   .call(yAxis);
+
+var legend = svg.append("g")
+  .attr("width", 30)
+  .attr("heigh", 30)
+  .attr("class", "legend")
+  .attr("transform", "translate(965,30)");
+
+legend.append("svg:line")
+  .attr("x2", 20)
+  .attr("class", "legend");
