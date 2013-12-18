@@ -97,7 +97,7 @@ var legendStable = svg.append("g")
   .attr("width", 50)
   .attr("height", 30)
   .attr("class", "legend")
-  .attr("transform", "translate(830,150)");
+  .attr("transform", "translate(840,150)");
 
 legendStable.append("svg:line")
   .attr("x2", 15)
@@ -112,7 +112,7 @@ var legendUnstable = svg.append("g")
   .attr("width", 50)
   .attr("height", 30)
   .attr("class", "legend")
-  .attr("transform", "translate(830,100)");
+  .attr("transform", "translate(840,180)");
 
 legendUnstable.append("svg:line")
   .attr("x2", 15)
@@ -127,7 +127,7 @@ var legendFailed = svg.append("g")
   .attr("width", 50)
   .attr("height", 30)
   .attr("class", "legend")
-  .attr("transform", "translate(830,120)");
+  .attr("transform", "translate(840,210)");
 
 legendFailed.append("svg:line")
   .attr("x2", 15)

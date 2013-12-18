@@ -8,9 +8,11 @@ var margin = {top: 20, right: 30, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+var graphWidth = 860 - margin.left - margin.right;
+
 // Define the X and Y data points and axis
 var x = d3.time.scale()
-          .range([10, width]);
+          .range([10, graphWidth]);
 
 var y = d3.scale.linear()
           .range([height, 0]);
@@ -99,3 +101,48 @@ circles
     .on("mouseout",  function(d,i) {
       tooltip.classed("hidden", true)
     });
+
+var legendStable = svg.append("g")
+  .attr("width", 50)
+  .attr("height", 30)
+  .attr("class", "legend")
+  .attr("transform", "translate(840,150)");
+
+legendStable.append("svg:line")
+  .attr("x2", 15)
+  .attr("class", "stable");
+
+legendStable.append("svg:text")
+  .attr("x", 30)
+  .attr("dy", ".21em")
+  .text("Stable");
+
+var legendUnstable = svg.append("g")
+  .attr("width", 50)
+  .attr("height", 30)
+  .attr("class", "legend")
+  .attr("transform", "translate(840,180)");
+
+legendUnstable.append("svg:line")
+  .attr("x2", 15)
+  .attr("class", "unstable");
+
+legendUnstable.append("svg:text")
+  .attr("x", 30)
+  .attr("dy", ".21em")
+  .text("Unstable");
+
+var legendFailed = svg.append("g")
+  .attr("width", 50)
+  .attr("height", 30)
+  .attr("class", "legend")
+  .attr("transform", "translate(840,210)");
+
+legendFailed.append("svg:line")
+  .attr("x2", 15)
+  .attr("class", "failed");
+
+legendFailed.append("svg:text")
+  .attr("x", 30)
+  .attr("dy", ".21em")
+  .text("Failed");
