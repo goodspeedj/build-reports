@@ -10,7 +10,7 @@ while ($max >= $count) {
     my $first_date = 1385856000;
     my $range_date = 1641600;
 
-    my $component_id = int(rand(3)) + 1;
+    my $component_id = int(rand(5)) + 1;
     my $status_id = int(rand(3)) + 1;
     my $build_num = int(rand(300)) + 1;
     my $created = int(rand($range_date)) + $first_date;
