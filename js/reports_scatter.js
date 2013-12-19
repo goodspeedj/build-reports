@@ -96,7 +96,9 @@ circles
       tooltip
         .classed("hidden", false)
         .attr("style", "left:" + (mouse[0]+90) + "px;top:" + (mouse[1]+100) + "px")
-        .html("Job: " + d.job_name + "<br />Product: " + d.product + "<br />Test Coverage: " + d.coverage + "%<br />")
+        .html("<span class='bold'>Job: </span>" + d.job_name + 
+              "<br /><span class='bold'>Product: </span>" + d.product + 
+              "<br /><span class='bold'>Coverage: </span>" + d.coverage + "%<br />")
     })
     .on("mouseout",  function(d,i) {
       tooltip.classed("hidden", true)
