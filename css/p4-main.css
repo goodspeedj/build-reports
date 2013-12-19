@@ -74,6 +74,13 @@ div.tooltip {
   stroke-width: 15px;
 }
 
+.error {
+  color: red;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
 .failed {
   stroke: #EF3434;
   stroke-width: 15px;
