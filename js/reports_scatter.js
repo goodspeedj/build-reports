@@ -1,5 +1,3 @@
-console.log(JSON.stringify(data, undefined, 2));
-
 // Date format
 var format = d3.time.format("%m/%d/%y");
 
