@@ -12,9 +12,11 @@ var margin = {top: 20, right: 30, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+var graphWidth = 860 - margin.left - margin.right;
+
 // Set the X and Y scales and axis
 var x = d3.time.scale()
-          .range([0, width]);
+          .range([0, graphWidth]);
 
 var y = d3.scale.linear()
           .range([height, 0]);
@@ -91,12 +93,47 @@ svg.append("g")
   .attr("class", "y axis")
   .call(yAxis);
 
-var legend = svg.append("g")
-  .attr("width", 30)
-  .attr("heigh", 30)
+var legendStable = svg.append("g")
+  .attr("width", 50)
+  .attr("height", 30)
   .attr("class", "legend")
-  .attr("transform", "translate(965,30)");
+  .attr("transform", "translate(840,150)");
 
-legend.append("svg:line")
-  .attr("x2", 20)
-  .attr("class", "legend");
+legendStable.append("svg:line")
+  .attr("x2", 15)
+  .attr("class", "stable");
+
+legendStable.append("svg:text")
+  .attr("x", 30)
+  .attr("dy", ".21em")
+  .text("Stable");
+
+var legendUnstable = svg.append("g")
+  .attr("width", 50)
+  .attr("height", 30)
+  .attr("class", "legend")
+  .attr("transform", "translate(840,180)");
+
+legendUnstable.append("svg:line")
+  .attr("x2", 15)
+  .attr("class", "unstable");
+
+legendUnstable.append("svg:text")
+  .attr("x", 30)
+  .attr("dy", ".21em")
+  .text("Unstable");
+
+var legendFailed = svg.append("g")
+  .attr("width", 50)
+  .attr("height", 30)
+  .attr("class", "legend")
+  .attr("transform", "translate(840,210)");
+
+legendFailed.append("svg:line")
+  .attr("x2", 15)
+  .attr("class", "failed");
+
+legendFailed.append("svg:text")
+  .attr("x", 30)
+  .attr("dy", ".21em")
+  .text("Failed");

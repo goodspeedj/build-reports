@@ -20,14 +20,14 @@
 
         <label class="col-sm-3" for="build_num">Build Number</label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" name="build_num" placeholder="Build #" required>
+          <input class="form-control" type="text" name="build_num" placeholder="Build #" id="build_num">
         </div>
 
         <br /><br />
 
         <label class="col-sm-3" for="job_name">Job Name</label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" name="job_name" placeholder="Job Name" required>
+          <input class="form-control" type="text" name="job_name" id="job_name" placeholder="Job Name">
         </div>
 
         <br /><br />
@@ -45,7 +45,14 @@
 
         <label class="col-sm-3" for="duration">Duration</label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" name="duration" placeholder="Build Time" required>
+          <input class="form-control" type="text" name="duration" id="duration" placeholder="Build Time">
+        </div>
+
+        <br /><br />
+
+        <label class="col-sm-3" for="coverage">Coverage</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="coverage" id="coverage" placeholder="Code Coverage Percentage">
         </div>
 
         <p>&nbsp;</p>

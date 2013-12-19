@@ -2,6 +2,10 @@
 use strict;
 use warnings;
 
+use List::Util::WeightedChoice qw( choose_weighted );
+my $choices = ['1', '2', '3'];
+my $weights = [ 50, 30, 15] ;
+
 my $max = 150;
 my $count = 1;
 
@@ -10,8 +14,9 @@ while ($max >= $count) {
     my $first_date = 1385856000;
     my $range_date = 1641600;
 
-    my $component_id = int(rand(3)) + 1;
-    my $status_id = int(rand(3)) + 1;
+    my $component_id = int(rand(5)) + 1;
+    #my $status_id = int(rand(3)) + 1;
+    my $status_id = choose_weighted( $choices, $weights );
     my $build_num = int(rand(300)) + 1;
     my $created = int(rand($range_date)) + $first_date;
     my $dur = "";
