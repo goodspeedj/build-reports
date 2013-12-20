@@ -8,13 +8,7 @@
 
   <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
-  <!-- <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables_themeroller.css"> -->
-  <link rel="stylesheet" type="text/css" href="/css/dataTables.bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/css/p4-main.css">               
-
-  <script src="/js/d3.v3.min.js"></script>
-  <script src="/js/moment.min.js"></script>
   
   <!-- Controller Specific JS/CSS -->
   <?php if(isset($client_files_head)) echo $client_files_head; ?>
