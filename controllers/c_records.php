@@ -15,6 +15,20 @@ class records_controller extends base_controller {
      */
     public function index() {
 
+        # CSS/JS includes
+        //$client_files_head = Array("/js/records_index.js");
+        //$this->template->client_files_head = Utils::load_client_files($client_files_head);
+        
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/jquery.dataTables.min.js",
+            "/js/dataTables.bootstrap.js",
+            "/js/records_index.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);   
+            
+
         function clean ($string) {
             return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
         }
@@ -53,6 +67,14 @@ class records_controller extends base_controller {
      * Add new build records to the database
      */
     public function add() {
+
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js",
+            "/js/records_add.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         $this->template->content = View::instance('v_records_add');
         $this->template->title   = "Add new record";
