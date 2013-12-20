@@ -7,7 +7,7 @@
 
         <label class="col-sm-3" for="component_id">Component</label>
         <div class="col-sm-9">
-          <select class="form-control" name="component_id">
+          <select class="form-control" name="component_id" id="component_id">
 
           <?php foreach ($components as $component): ?>
             <option><?= $component['name']; ?></option>
@@ -34,7 +34,7 @@
 
         <label class="col-sm-3" for="status_id">Status</label>
         <div class="col-sm-9">
-          <select class="form-control" name="status_id">
+          <select class="form-control" name="status_id" id="status_id">
             <option value="1">Stable</option>
             <option value="2">Unstable</option>
             <option value="3">Failed</option>
