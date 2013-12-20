@@ -79,6 +79,13 @@ div.tooltip {
   stroke-width: 15px;
 }
 
+.error {
+  color: red;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
 .legend {
   font-size: 12px;
 }

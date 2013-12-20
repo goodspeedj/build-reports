@@ -13,6 +13,4 @@
     // Get the data from the controller and convert to JSON
     var data = <?php echo json_encode($data); ?>;
   </script>
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/reports_statusByDate.js"></script>
 </div>

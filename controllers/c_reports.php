@@ -15,6 +15,13 @@ class reports_controller extends base_controller {
      */
     public function index() {
 
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/d3.v3.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);   
+
         // Setup the view
         $this->template->content = View::instance('v_reports_index');
         $this->template->title   = "Build Reports";
@@ -28,7 +35,16 @@ class reports_controller extends base_controller {
 
     public function statusByDate() {
 
-    	// Setup the view
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/d3.v3.min.js",
+            "/js/moment.min.js",
+            "/js/reports_statusByDate.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
+    	  // Setup the view
         $this->template->content = View::instance('v_reports_statusByDate');
         $this->template->title   = "Build Reports: Status by Date";
 
@@ -92,7 +108,15 @@ class reports_controller extends base_controller {
 
     public function scatter() {
 
-      // Setup the view
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/d3.v3.min.js",
+            "/js/reports_scatter.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body); 
+
+        // Setup the view
         $this->template->content = View::instance('v_reports_scatter');
         $this->template->title   = "Build Reports: Scatterplot";
 
