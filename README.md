@@ -9,15 +9,15 @@ The Build Tracker is an application used to track Continuous Integration softwar
 There are three main sections to the application.  
 
 
-###Admin
+####Admin
 This section is basic administration - editing your user profile and adding new build records.
 
 
-###Records
+####Records
 This section is a table displaying all of the build records in tabular form.  A user can page through the records, sort the records or search/filter the records.  The Data Tables (http://datatables.net/) javascript library was used for the table layout.
 
 
-###Reports
+####Reports
 This section has two different reports.  The first report is a stacked area chart showing the number builds by date and by status (stable, unstable or failed).
 
 The second report is a scatter plot showing the build date on the X axis and the build duration (time) on the Y axis.  The status of the build is encoded in the color of the dots and the code coverage percentage is encoded by the size of the dots.  Hovering over each dot will show specific information about that particular build.
