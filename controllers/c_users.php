@@ -23,7 +23,8 @@ class users_controller extends base_controller {
         // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
-            "/js/bootstrap.min.js"
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js"
         );
         $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
@@ -86,7 +87,8 @@ class users_controller extends base_controller {
         // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
-            "/js/bootstrap.min.js"
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js"
         );
         $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
@@ -167,7 +169,8 @@ class users_controller extends base_controller {
         // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
-            "/js/bootstrap.min.js"
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js"
         );
         $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
