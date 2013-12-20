@@ -8,13 +8,7 @@
 
   <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
-  <!-- <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables_themeroller.css"> -->
-  <link rel="stylesheet" type="text/css" href="/css/dataTables.bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/css/p4-main.css">               
-
-  <script src="/js/d3.v3.min.js"></script>
-  <script src="/js/moment.min.js"></script>
   
   <!-- Controller Specific JS/CSS -->
   <?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -57,15 +51,6 @@
       </span>
     </div>
   </div>
-
-  
-  <script src="/js/jquery-2.0.3.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/bootstrap-filestyle.min.js"></script>
-  <script src="/js/jquery.validate.min.js"></script>
-  <script src="/js/jquery.dataTables.min.js"></script>
-  <script src="/js/dataTables.bootstrap.js"></script>
-  <script src="/js/p4-records.js"></script>
   
 </body>
 </html>

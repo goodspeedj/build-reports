@@ -20,6 +20,14 @@ class users_controller extends base_controller {
      */
     public function signup($errors = NULL, $source = NULL) {
 
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign up";
 
@@ -37,6 +45,9 @@ class users_controller extends base_controller {
 
         // Add created time to $_POST data
         $_POST['created'] = Time::now();
+
+        // Set default role
+        $_POST['role_id'] = 1;
 
         // Add the token record
         $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
@@ -72,6 +83,14 @@ class users_controller extends base_controller {
      * Display the login form
      */
     public function login($err= NULL) {
+
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         // Bypass the login if the user has a cookie
         if (isset($_COOKIE['token'])) {
@@ -147,6 +166,14 @@ class users_controller extends base_controller {
      */
     public function edit($user_id = NULL, $errors = NULL, $source = NULL) {
 
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js",
+            "/js/jquery.validate.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
         // Setup the view
         $this->template->content = View::instance('v_users_edit');
         $this->template->title = "Edit Profile";
@@ -212,6 +239,13 @@ class users_controller extends base_controller {
      */
     public function profile($user_id = NULL, $errors = NULL, $source = NULL) {
 
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
         // If they are not logged in send them back to the login page
         if (!$this->user) {
             Router::redirect('/users/login');
@@ -234,6 +268,7 @@ class users_controller extends base_controller {
                     FROM users, roles
                     WHERE user_id = ".$user_id . "
                     AND users.role_id = roles.role_id";
+
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 

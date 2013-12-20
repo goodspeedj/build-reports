@@ -20,7 +20,7 @@
 
         <label class="col-sm-3" for="build_num">Build Number</label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" name="build_num" placeholder="Build #" id="build_num">
+          <input class="form-control" type="text" name="build_num" placeholder="Build # (1-500)" id="build_num">
         </div>
 
         <br /><br />
@@ -45,7 +45,7 @@
 
         <label class="col-sm-3" for="duration">Duration</label>
         <div class="col-sm-9">
-          <input class="form-control" type="text" name="duration" id="duration" placeholder="Build Time">
+          <input class="form-control" type="text" name="duration" id="duration" placeholder="Build Time (Time in minutes)">
         </div>
 
         <br /><br />
