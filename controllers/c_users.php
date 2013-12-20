@@ -45,6 +45,9 @@ class users_controller extends base_controller {
         // Add created time to $_POST data
         $_POST['created'] = Time::now();
 
+        // Set default role
+        $_POST['role_id'] = 1;
+
         // Add the token record
         $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 
@@ -262,6 +265,7 @@ class users_controller extends base_controller {
                     FROM users, roles
                     WHERE user_id = ".$user_id . "
                     AND users.role_id = roles.role_id";
+
 
             $user_details = DB::instance(DB_NAME)->select_row($sql);
 
