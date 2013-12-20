@@ -112,6 +112,7 @@ class reports_controller extends base_controller {
             "/js/jquery-2.0.3.min.js",
             "/js/bootstrap.min.js",
             "/js/d3.v3.min.js",
+            "/js/moment.min.js",
             "/js/reports_scatter.js"
         );
         $this->template->client_files_body = Utils::load_client_files($client_files_body); 
