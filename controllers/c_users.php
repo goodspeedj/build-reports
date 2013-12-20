@@ -20,6 +20,13 @@ class users_controller extends base_controller {
      */
     public function signup($errors = NULL, $source = NULL) {
 
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign up";
 
@@ -72,6 +79,13 @@ class users_controller extends base_controller {
      * Display the login form
      */
     public function login($err= NULL) {
+
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         // Bypass the login if the user has a cookie
         if (isset($_COOKIE['token'])) {
@@ -147,6 +161,13 @@ class users_controller extends base_controller {
      */
     public function edit($user_id = NULL, $errors = NULL, $source = NULL) {
 
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
+
         // Setup the view
         $this->template->content = View::instance('v_users_edit');
         $this->template->title = "Edit Profile";
@@ -211,6 +232,13 @@ class users_controller extends base_controller {
      * Display the profile page
      */
     public function profile($user_id = NULL, $errors = NULL, $source = NULL) {
+
+        // JavaScript includes
+        $client_files_body = Array(
+            "/js/jquery-2.0.3.min.js",
+            "/js/bootstrap.min.js"
+        );
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);  
 
         // If they are not logged in send them back to the login page
         if (!$this->user) {
