@@ -24,7 +24,7 @@
           <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
 
           <label for="role_id">role</label>
-          <select class="form-control" name="role_id">
+          <select class="form-control" name="role_id" id="role_id">
           <?php if($user_details['role_id'] == 1): ?>
             <option selected value="1">User</option>
             <option value="2">Administrator</option>
