@@ -12,7 +12,7 @@ $( "#record-add" ).validate({
     duration: {
       required: true,
       number: true,
-      range: [1, 1000]
+      range: [1, 600]
     },
     coverage: {
       required: true,
