@@ -48,6 +48,7 @@ class records_controller extends base_controller {
                        builds.status_id,
                        builds.created, 
                        builds.duration,
+                       builds.coverage,
                        builds.job_name
                 FROM builds
                 INNER JOIN components

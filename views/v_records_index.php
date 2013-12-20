@@ -7,7 +7,8 @@
       <th>Build Number</th>
       <th>Job Name</th>
       <th>Status</th>
-      <th>Build Time</th>
+      <th>Duration</th>
+      <th>Coverage</th>
       <th>Created</th>
     </tr>
   </thead>
@@ -30,6 +31,7 @@
         <?php endif; ?>
       </td>
       <td><?= clean($row['duration']); ?></td>
+      <td><?= clean($row['coverage']); ?>&#37;</td>
       <td><?= clean(date("Y-m-d H:i:s", $row['created'])); ?></td>
     </tr>
   <?php endforeach; ?>
