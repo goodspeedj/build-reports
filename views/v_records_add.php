@@ -1,7 +1,10 @@
 <div class="container">
   <div class="col-md-3"></div>
   <div class="col-md-6">
-
+  <p>Use this form to manually add new build records to the database.  The build product will be 
+     automatically chosen based on which component you choose.
+  </p>
+  <p>&nbsp;</p>
     <form class="form-horizontal" id="record-add" method="POST" action="/records/p_add">
       <div class="form-group">
 
