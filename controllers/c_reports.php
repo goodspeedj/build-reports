@@ -15,6 +15,7 @@ class reports_controller extends base_controller {
      */
     public function index() {
 
+        // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
             "/js/bootstrap.min.js",
@@ -35,6 +36,7 @@ class reports_controller extends base_controller {
 
     public function statusByDate() {
 
+        // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
             "/js/bootstrap.min.js",
@@ -48,7 +50,7 @@ class reports_controller extends base_controller {
         $this->template->content = View::instance('v_reports_statusByDate');
         $this->template->title   = "Build Reports: Status by Date";
 
-        // Get the build records - date, status and count.  Complext query needed to return
+        // Get the build records - date, status and count.  Complex query needed to return
         // 0 counts for all days and all statuses if there are no coresponding records
         $sql = "SELECT 
                   allRecords.date,
@@ -108,6 +110,7 @@ class reports_controller extends base_controller {
 
     public function scatter() {
 
+        // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
             "/js/bootstrap.min.js",

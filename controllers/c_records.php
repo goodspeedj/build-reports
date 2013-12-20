@@ -15,13 +15,14 @@ class records_controller extends base_controller {
      */
     public function index() {
 
-        # CSS/JS includes
+        // CSS includes
         $client_files_head = Array(
             "/css/dataTables.bootstrap.css",
             "/css/jquery.dataTables.css"
         );
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
         
+        // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
             "/js/bootstrap.min.js",
@@ -71,6 +72,7 @@ class records_controller extends base_controller {
      */
     public function add() {
 
+        // JavaScript includes
         $client_files_body = Array(
             "/js/jquery-2.0.3.min.js",
             "/js/bootstrap.min.js",
