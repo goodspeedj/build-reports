@@ -16,6 +16,15 @@
     user can elevate their privileges to Admin.  The Admin role will allow them to add build records
     to the database.  I left the ability for users to change their own permissions for facilitating 
     testing by the graders.
+  <p>&nbsp;</p>
+  <p>
+    For testing you can create new accounts and change your own privileges or use the following 
+    accounts:
+  </p>
+  <ul>
+    <li>Regular User: jt@harvard.edu (password = joe)</li>
+    <li>Admin User: ja@harvard.edu (password = joe)</li>
+  </ul>
 
   <h4>Records</h4>
     This section is a table displaying all of the build records in tabular form.  A user can page 
@@ -25,6 +34,7 @@
   <h4>Reports</h4>
     This section has two different reports.  The first report is a stacked area chart showing the 
     number builds by date and by status (stable, unstable or failed).
+  <p>&nbsp;</p>
   <p>
     Both of these reports were generated with the D3 library (http://d3js.org/).
   </p>
@@ -38,13 +48,13 @@
   <p>&nbsp;</p>
   <h4>Javascript Libraries used for this project:</h4>
   <ul>
-    <li>Bootstrap: Layout Design</li>
-    <li>jQuery: Client side JavaScript Library</li>
-    <li>jQuery Validate: Form Validation</li>
-    <li>D3: Data Driven Documents</li>
-    <li>Data Tables: Table Layout</li>
-    <li>Data Tables Bootstrap: Table Layout with Bootstrap style</li>
-    <li>Moment: Date Time Library</li>
+    <li><a href="http://getbootstrap.com/">Bootstrap:</a> Layout Design</li>
+    <li><a href="http://jquery.com/">jQuery:</a> Client side JavaScript Library</li>
+    <li><a href="http://jqueryvalidation.org/">jQuery Validate:</a> Form Validation</li>
+    <li><a href="http://d3js.org/">D3:</a> Data Driven Documents</li>
+    <li><a href="http://datatables.net/">Data Tables:</a> Table Layout</li>
+    <li><a href="https://github.com/DataTables/Plugins/tree/master/integration/bootstrap/3">Data Tables Bootstrap:</a> Table Layout with Bootstrap style</li>
+    <li><a href="http://momentjs.com/">Moment:</a> Date Time Library</li>
   </ul>
   <p>&nbsp;</p>
 
