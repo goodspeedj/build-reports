@@ -10,7 +10,7 @@ There are three main sections to the application.
 
 
 ####Admin
-This section is basic administration - editing your user profile and adding new build records.
+This section is basic administration - editing your user profile and adding new build records.  There are two types of user in this application: normal users and administrators.  When signing up for an account a user defaults to the user role, but by going into the 'Edit Profile' page a user can elevate their privileges to Admin.  The Admin role will allow them to add build records to the database.  I left the ability for users to change their own permissions for facilitating testing by the graders.
 
 
 ####Records
