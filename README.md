@@ -12,6 +12,11 @@ There are three main sections to the application.
 ####Admin
 This section is basic administration - editing your user profile and adding new build records.  There are two types of user in this application: normal users and administrators.  When signing up for an account a user defaults to the user role, but by going into the 'Edit Profile' page a user can elevate their privileges to Admin.  The Admin role will allow them to add build records to the database.  I left the ability for users to change their own permissions for facilitating testing by the graders.
 
+For testing you can create new accounts and change your own privileges or use the following accounts:
+
+Regular User: jt@harvard.edu (password = joe)
+Admin User: ja@harvard.edu (password = joe)
+
 
 ####Records
 This section is a table displaying all of the build records in tabular form.  A user can page through the records, sort the records or search/filter the records.  The Data Tables (http://datatables.net/) javascript library was used for the table layout.
@@ -25,3 +30,13 @@ The second report is a scatter plot showing the build date on the X axis and the
 Both of these reports were generated with the D3 library (http://d3js.org/).
 
 The main goal of these reports is to show trending information over time.  Specifically I would like to know whether the builds taking longer over time, do we have less failures, is our code coverage improving?  Future enhancements would include the ability to filter the reports on a specific sub-set of data.
+
+
+####Javascript Libraries used for this project:
+Bootstrap: Layout Design
+jQuery: Client side JavaScript Library
+jQuery Validate: Form Validation
+D3: Data Driven Documents
+Data Tables: Table Layout
+Data Tables Bootstrap: Table Layout with Bootstrap style
+Moment: Date Time Library
