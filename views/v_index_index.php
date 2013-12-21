@@ -1,7 +1,7 @@
 <h3>Welome to the Build Tracker</h3>
 <div class="left">
 
-  <h5>Overview</h5>
+  <h4>Overview</h4>
     The Build Tracker is an application used to track Continuous Integration software builds.  
     I created this application as a proof of concept for a tool that I hope to use at work.  
     In its current form builds can be manually added to the MySQL database through the UI, but 
@@ -9,15 +9,15 @@
     to the database.  For the purposes of this project the data is randomized dummy data generated 
     with the createSQL.pl perl script, located in the root of the project.
 
-  <h5>Admin</h5>
+  <h4>Admin</h4>
     This section is basic administration - editing your user profile and adding new build records.
 
-  <h5>Records</h5>
+  <h4>Records</h4>
     This section is a table displaying all of the build records in tabular form.  A user can page 
     through the records, sort the records or search/filter the records.  The Data Tables 
     (http://datatables.net/) javascript library was used for the table layout.
 
-  <h5>Reports</h5>
+  <h4>Reports</h4>
     This section has two different reports.  The first report is a stacked area chart showing the 
     number builds by date and by status (stable, unstable or failed).
   <p>
@@ -31,7 +31,7 @@
   </p>
 
   <p>&nbsp;</p>
-  <h5>Javascript Libraries used for this project:</h5>
+  <h4>Javascript Libraries used for this project:</h4>
   <ul>
     <li>Bootstrap: Layout Design</li>
     <li>jQuery: Client side JavaScript Library</li>
