@@ -34,9 +34,15 @@ The main goal of these reports is to show trending information over time.  Speci
 
 ####Javascript Libraries used for this project:
 Bootstrap: Layout Design
+
 jQuery: Client side JavaScript Library
+
 jQuery Validate: Form Validation
+
 D3: Data Driven Documents
+
 Data Tables: Table Layout
+
 Data Tables Bootstrap: Table Layout with Bootstrap style
+
 Moment: Date Time Library
