@@ -6,9 +6,8 @@
     I created this application as a proof of concept for a tool that I hope to use at work.  
     In its current form builds can be manually added to the MySQL database through the UI, but 
     in future form our build engine (Jenkins) will automatically write the build information 
-    to the database.  In this form the application will be a read only application.  For the 
-    purposes of this project the data is randomized dummy data generated with the createSQL.pl 
-    perl script.
+    to the database.  For the purposes of this project the data is randomized dummy data generated 
+    with the createSQL.pl perl script, located in the root of the project.
 
   <h5>Admin</h5>
     This section is basic administration - editing your user profile and adding new build records.
