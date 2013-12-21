@@ -53,7 +53,7 @@
 
         <br /><br />
 
-        <label class="col-sm-3" for="coverage">Coverage</label>
+        <label class="col-sm-3" for="coverage">Coverage %</label>
         <div class="col-sm-9">
           <input class="form-control" type="text" name="coverage" id="coverage" placeholder="Code Coverage Percentage">
         </div>
