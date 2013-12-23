@@ -29,6 +29,7 @@ var yAxis = d3.svg.axis()
 var tooltip = d3.select("#graph").append("div")
         .attr("class", "tooltip");
 
+
 // Loop through the data
 data.forEach(function(d) {
   var date = new Date(d.date);
@@ -50,8 +51,10 @@ var svg = d3.select("#graph").append("svg")
 
 // Add the circles to the graph
 var circles = svg.selectAll("circle")
-    .data(data)
-    .enter()
+    .data(data);
+
+
+circles.enter()
     .append("circle")
     .attr("cx", function(d) {
         return x(d.date);
@@ -75,6 +78,22 @@ var circles = svg.selectAll("circle")
         }
         return color;
     });
+
+circles.exit().remove();
+
+d3.select("#product")
+  .on("change", function() {
+    circles
+      .data(data.filter(function(d) {
+        if (d.product == 'Sales') {
+          console.log(d);
+          return d;
+        }
+      })).enter();
+
+   circles.exit().remove(); 
+      //.transition().attr("cy",200)
+  });
 
 // Add the X and Y axis
 svg.append("g")
