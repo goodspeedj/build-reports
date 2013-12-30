@@ -49,7 +49,46 @@ var svg = d3.select("#graph").append("svg")
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// Add the circles to the graph
+
+function update(data) {
+  var circles = svg.selectAll("circle").data(data);
+
+  circles.attr("fill", "blue");
+
+  circles.enter()
+    .append("circle")
+    .attr("cx", function(d) {
+        return x(d.date);
+    })
+    .attr("cy", function(d) {
+        return y(d.duration);
+    })
+    .attr("r", function(d) {
+        return ((d.coverage / 100) * 10)
+    })
+    .attr("fill", function(d) {
+        var color;
+        if (d.status == 'Stable') {
+            color = "#A2C21D";
+        }
+        else if (d.status == 'Unstable') {
+            color = "#FCE338";
+        }
+        else {
+            color = "#EF3434";
+        }
+        return color;
+    });
+
+  circles.circles(function(d) { return d; });
+
+  circles.exit().remove();
+}
+
+
+update(data);
+
+/* Add the circles to the graph
 var circles = svg.selectAll("circle")
     .data(data);
 
@@ -80,19 +119,11 @@ circles.enter()
     });
 
 circles.exit().remove();
+*/
 
 d3.select("#product")
   .on("change", function() {
-    circles
-      .data(data.filter(function(d) {
-        if (d.product == 'Sales') {
-          console.log(d);
-          return d;
-        }
-      })).enter();
 
-   circles.exit().remove(); 
-      //.transition().attr("cy",200)
   });
 
 // Add the X and Y axis
