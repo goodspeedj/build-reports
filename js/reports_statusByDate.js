@@ -34,23 +34,6 @@ var yAxis = d3.svg.axis()
               .scale(y)
               .orient("left");
 
-// Create the area stack
-var stack = d3.layout.stack()
-              .offset("zero")
-              .values(function(d) { return d.values; })
-              .x(function(d) { return d.date; })
-              .y(function(d) { return d.Count; });
-
-// Nest by name aka status
-var nest = d3.nest()
-              .key(function(d) { return d.Name; });
-
-// Define the area
-var area = d3.svg.area()
-              .interpolate("basis")
-              .x(function(d) { return x(d.date); })
-              .y0(function(d) { return y(d.y0); })
-              .y1(function(d) { return y(d.y0 + d.y); });
 
 // Define the SVG element to go in the graph div
 var svg = d3.select("#graph").append("svg")
@@ -60,57 +43,68 @@ var svg = d3.select("#graph").append("svg")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Loop through the data
-data.forEach(function(d) {
+allData.forEach(function(d) {
   var date = new Date(d.date);
   var date = moment(d.date).format('MM/DD/YY');
   d.date = format.parse(date);
   d.Count = +d.Count;
 });
 
-var layers;
 
 // Update data
 function update(data) {
-  layers = stack(nest.entries(data));
+
+  // Create the area stack
+  var stack = d3.layout.stack()
+                .offset("zero")
+                .values(function(d) { return d.values; })
+                .x(function(d) { return d.date; })
+                .y(function(d) { return d.Count; });
+  
+  // Nest by name aka status
+  var nest = d3.nest()
+                .key(function(d) { return d.Name; });
+  
+  // Define the area
+  var area = d3.svg.area()
+                .interpolate("basis")
+                .x(function(d) { return x(d.date); })
+                .y0(function(d) { return y(d.y0); })
+                .y1(function(d) { return y(d.y0 + d.y); });
+  
+//function update(data) {
+  var layers = stack(nest.entries(data));
   x.domain(d3.extent(data, function(d) { return d.date; }));
   y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
 
   // Add the line paths
-  svg.selectAll(".layer")
-    .data(layers)
-  .enter().append("path")
+  var layer = svg.selectAll(".layer").data(layers);
+
+  layer.enter()
+    .append("path")
     .attr("class", "layer")
     .attr("d", function(d) { return area(d.values); })
     .style("fill", function(d, i) { return z(i); });
+
+  layer.exit().remove();
 }
 
 // Initial load of graph
-update(data);
-
-
-/**
- * Filter the data based on selection
- */
-function filterData(data, selection) {
-  var dataset = data;
-
-  if (selection == 'All') {
-    return dataset;
-  }
-  else {
-    dataset = data.filter(function(d) {
-      return d.product == selection;
-    });
-    return dataset;
-  }
-}
+update(allData);
 
 
 // Product type pull down
 d3.select("#product")
   .on("change", function() {
-    var newData = filterData(origData, this.value);
-    update(newData);
+    if (this.value == 'All') {
+      update(allData);
+    }
+    else if (this.value == 'Sales') {
+      update(salesData);
+    }
+    else {
+      update(serviceData);
+    }
   });
 
 

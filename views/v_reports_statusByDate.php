@@ -21,6 +21,8 @@
   
   <script>
     // Get the data from the controller and convert to JSON
-    var data = <?php echo json_encode($data); ?>;
+    var allData = <?php echo json_encode($allData); ?>;
+    var salesData = <?php echo json_encode($salesData); ?>;
+    var serviceData = <?php echo json_encode($serviceData); ?>;
   </script>
 </div>

@@ -100,6 +100,7 @@ class reports_controller extends base_controller {
 
 
         $allData = DB::instance(DB_NAME)->select_rows($sql);
+        $this->template->content->allData = $allData;
 
         $sql = "SELECT 
                   allRecords.date,
