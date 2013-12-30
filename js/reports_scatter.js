@@ -54,10 +54,14 @@ var svg = d3.select("#graph").append("svg")
 var circles;
 
 function update(data) {
+  
+  // bind data
   circles = svg.selectAll("circle").data(data);
 
-  circles.attr("fill", "blue");
+  // UPDATE old elements as needed
+  //circles.attr("fill", "blue");
 
+  // create new elements as needed
   circles.enter()
     .append("circle")
     .attr("cx", function(d) {
@@ -81,49 +85,32 @@ function update(data) {
             color = "#EF3434";
         }
         return color;
-    });
-
+    })
+    .style("fill-opacity", 1e-6)
+    .transition()
+      .duration(750)
+        .style("fill-opacity", 1);
+  
+  // Enter and Update
   //circles.circle(function(d) { return d; });
 
-  circles.exit().remove();
+  // Remove elements as needed
+  circles.exit()
+    .transition()
+      .duration(750)
+      .style("fill-opacity", 1e-6)
+    .remove();
 }
 
 
+
+// Initial load of graph
 update(data);
 
-/* Add the circles to the graph
-var circles = svg.selectAll("circle")
-    .data(data);
 
-
-circles.enter()
-    .append("circle")
-    .attr("cx", function(d) {
-        return x(d.date);
-    })
-    .attr("cy", function(d) {
-        return y(d.duration);
-    })
-    .attr("r", function(d) {
-        return ((d.coverage / 100) * 10)
-    })
-    .attr("fill", function(d) {
-        var color;
-        if (d.status == 'Stable') {
-            color = "#A2C21D";
-        }
-        else if (d.status == 'Unstable') {
-            color = "#FCE338";
-        }
-        else {
-            color = "#EF3434";
-        }
-        return color;
-    });
-
-circles.exit().remove();
-*/
-
+/**
+ * Filter the data based on selection
+ */
 function filterData(data, selection) {
   var dataset = data;
 
@@ -138,11 +125,14 @@ function filterData(data, selection) {
   }
 }
 
+
+// Product type pull down
 d3.select("#product")
   .on("change", function() {
-    filterData(origData, this.value);
-    console.log(filterData(origData, this.value));
+    var newData = filterData(origData, this.value);
+    update(newData);
   });
+
 
 // Add the X and Y axis
 svg.append("g")
