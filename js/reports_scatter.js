@@ -1,3 +1,5 @@
+var origData = data;
+
 // Date format
 var format = d3.time.format("%m/%d/%y");
 
@@ -49,9 +51,10 @@ var svg = d3.select("#graph").append("svg")
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var circles;
 
 function update(data) {
-  var circles = svg.selectAll("circle").data(data);
+  circles = svg.selectAll("circle").data(data);
 
   circles.attr("fill", "blue");
 
@@ -80,7 +83,7 @@ function update(data) {
         return color;
     });
 
-  circles.circles(function(d) { return d; });
+  //circles.circle(function(d) { return d; });
 
   circles.exit().remove();
 }
@@ -121,9 +124,24 @@ circles.enter()
 circles.exit().remove();
 */
 
+function filterData(data, selection) {
+  var dataset = data;
+
+  if (selection == 'All') {
+    return dataset;
+  }
+  else {
+    dataset = data.filter(function(d) {
+      return d.product == selection;
+    });
+    return dataset;
+  }
+}
+
 d3.select("#product")
   .on("change", function() {
-
+    filterData(origData, this.value);
+    console.log(filterData(origData, this.value));
   });
 
 // Add the X and Y axis
