@@ -67,8 +67,54 @@ data.forEach(function(d) {
   d.Count = +d.Count;
 });
 
+var layers;
 
-// Create the layers
+// Update data
+function update(data) {
+  layers = stack(nest.entries(data));
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+  y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+
+  // Add the line paths
+  svg.selectAll(".layer")
+    .data(layers)
+  .enter().append("path")
+    .attr("class", "layer")
+    .attr("d", function(d) { return area(d.values); })
+    .style("fill", function(d, i) { return z(i); });
+}
+
+// Initial load of graph
+update(data);
+
+
+/**
+ * Filter the data based on selection
+ */
+function filterData(data, selection) {
+  var dataset = data;
+
+  if (selection == 'All') {
+    return dataset;
+  }
+  else {
+    dataset = data.filter(function(d) {
+      return d.product == selection;
+    });
+    return dataset;
+  }
+}
+
+
+// Product type pull down
+d3.select("#product")
+  .on("change", function() {
+    var newData = filterData(origData, this.value);
+    update(newData);
+  });
+
+
+/* Create the layers
 var layers = stack(nest.entries(data));
 
 layers = stack(nest.entries(data));
@@ -82,6 +128,7 @@ svg.selectAll(".layer")
   .attr("class", "layer")
   .attr("d", function(d) { return area(d.values); })
   .style("fill", function(d, i) { return z(i); });
+*/
 
 // Add the X and Y axis
 svg.append("g")

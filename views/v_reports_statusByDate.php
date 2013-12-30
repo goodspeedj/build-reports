@@ -5,6 +5,16 @@
 
   <p>&nbsp;</p>
 
+  <div class="col-md-4">
+    <form>
+      <select class="form-control" id="product" name="product">
+        <option value="All">All</option>
+        <option value="Sales">Sales</option>
+        <option value="Service">Service</option>
+      </select>
+    </form>
+  </div>
+
   <div class="row">
     <div id="graph"></div>
   </div>
