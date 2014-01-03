@@ -4,6 +4,8 @@
 * Accessed December 5, 2013, June 29, 2012, http://bl.ocks.org/mbostock/3020685
 */
 
+var origData = data;
+
 // Date format
 var format = d3.time.format("%m/%d/%y");
 
@@ -22,12 +24,18 @@ var y = d3.scale.linear()
           .range([height, 0]);
 
 var indicators = ["Stable","Unstable","Failed"];
-var z = d3.scale.ordinal().domain(indicators).range(["#A2C21D","#FCE338","#EF3434"]);
+//var z;
+//var z = d3.scale.ordinal().domain(indicators).range(["#A2C21D","#FCE338","#EF3434"]);
+var z = d3.scale.ordinal().domain(indicators).range(["red","orange","yellow","green", "blue", "purple"]);
+//var z = d3.scale.ordinal().domain(indicators).range(["#FCE338","#EF3434","#EF3434","#A2C21D", "#A2C21D", "#FCE338"]);
+
+//var test = ["Sales", "Service"];
+
 
 var xAxis = d3.svg.axis()
               .scale(x)
               .orient("bottom")
-              .ticks(10);
+              .ticks(8);
 
 var yAxis = d3.svg.axis()
               .tickFormat(d3.format("d"))
@@ -43,27 +51,47 @@ var svg = d3.select("#graph").append("svg")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Loop through the data
-allData.forEach(function(d) {
-  var date = new Date(d.date);
-  var date = moment(d.date).format('MM/DD/YY');
-  d.date = format.parse(date);
-  d.Count = +d.Count;
-});
+
 
 
 // Update data
-function update(data) {
+function update(data, selection) {
+
+  data.forEach(function(d) {
+    var date = new Date(d.date);
+    var date = moment(d.date).format('MM/DD/YY');
+    d.date = format.parse(date);
+    d.Count = +d.Count;
+    //console.log(d.date + " = " + d.Count);
+  });
+
+  console.log(data);
+
+  /*
+  if (selection == 'All') {
+    z = d3.scale.ordinal().domain(indicators).range(["red","orange","yellow","green", "blue", "purple"]);
+  }
+  else if (selection == 'Sales') {
+    z = d3.scale.ordinal().domain(indicators).range(["green", "blue", "pink"]);
+  }
+  else {
+    z = d3.scale.ordinal().domain(indicators).range(["red","orange","yellow"]);
+  }
+  */
 
   // Create the area stack
   var stack = d3.layout.stack()
                 .offset("zero")
                 .values(function(d) { return d.values; })
                 .x(function(d) { return d.date; })
-                .y(function(d) { return d.Count; });
+                //.y(function(d) { return d.Count; });
+                .y(function(d) {
+                  return d.Count;
+                });
   
   // Nest by name aka status
   var nest = d3.nest()
-                .key(function(d) { return d.Name; });
+                .key(function(d) { return d.product_name + d.Name; });
   
   // Define the area
   var area = d3.svg.area()
@@ -80,31 +108,58 @@ function update(data) {
   // Add the line paths
   var layer = svg.selectAll(".layer").data(layers);
 
+  layer
+    .append("path")
+    .attr("class", "layer")
+    .attr("d", function(d) { return area(d.values); })
+    .style("fill", function(d, i) { 
+      console.log(i + " = " + z(i));
+      return z(i); 
+    });
+
+
   layer.enter()
     .append("path")
     .attr("class", "layer")
     .attr("d", function(d) { return area(d.values); })
-    .style("fill", function(d, i) { return z(i); });
+    .style("fill", function(d, i) { 
+      console.log(i + " = " + z(i));
+      return z(i); 
+    });
+
+  // Enter and Update
+  //layer.layer(function(d) { return d; });
 
   layer.exit().remove();
 }
 
 // Initial load of graph
-update(allData);
+update(data, "All");
+
+
+/**
+ * Filter the data based on selection
+ */
+function filterData(data, selection) {
+  var dataset = data;
+
+  if (selection == 'All') {
+    return dataset;
+  }
+  else {
+    dataset = data.filter(function(d) {
+      return d.product_name == selection;
+    });
+    return dataset;
+  }
+}
 
 
 // Product type pull down
 d3.select("#product")
   .on("change", function() {
-    if (this.value == 'All') {
-      update(allData);
-    }
-    else if (this.value == 'Sales') {
-      update(salesData);
-    }
-    else {
-      update(serviceData);
-    }
+    var newData = filterData(origData, this.value);
+    update(newData, this.value);
   });
 
 
